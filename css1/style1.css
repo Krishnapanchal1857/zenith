@@ -1,0 +1,10 @@
+/* ============================================================
+   css1/style1.css
+   This file re-exports the shared design system from css/style.css.
+   index1.html references this path; the @import keeps styles
+   in sync automatically so you only maintain one source file.
+   ============================================================ */
+@import url("../css/style.css");
+
+
+

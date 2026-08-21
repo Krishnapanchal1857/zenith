@@ -1,0 +1,77 @@
+/* ==========================================================================
+   1. MOBILE (default up to 767px handled here as overrides)
+   ========================================================================== */
+@media (max-width: 767px) {
+  .navbar__links, .navbar__cta { display: none; }
+  .navbar__toggle { display: flex; }
+
+  .hero__title { font-size: clamp(2rem, 9vw, 2.8rem); }
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn { width: 100%; }
+
+  .about-grid { grid-template-columns: 1fr; }
+  .timespace { grid-template-columns: 1fr; }
+  .timespace__diagram { max-width: 260px; margin: 0 auto; }
+
+  .grid--themes, .grid--why, .grid--rules,
+  .grid--prizes, .grid--sponsors {
+    grid-template-columns: 1fr;
+  }
+
+  .process { flex-direction: column; align-items: flex-start; gap: 1.4rem; }
+  .process__step { flex-direction: row; min-width: 0; }
+
+  .countdown__display { gap: 0.8rem; }
+  .countdown__unit { min-width: 70px; padding: 0.9rem 1rem; }
+  .countdown__unit span { font-size: 1.5rem; }
+
+  .footer__grid { grid-template-columns: 1fr; text-align: center; }
+  .footer__links, .footer__social { align-items: center; }
+
+  .section { padding: var(--space-lg) 0; }
+  .container { padding: 0 1.2rem; }
+}
+
+/* ==========================================================================
+   2. TABLET (768px - 1023px)
+   ========================================================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar__links { gap: 1rem; font-size: 0.85rem; }
+  .grid--themes, .grid--why, .grid--rules, .grid--prizes { grid-template-columns: repeat(2, 1fr); }
+  .grid--sponsors { grid-template-columns: repeat(2, 1fr); }
+  .timespace { grid-template-columns: 1fr; text-align: center; }
+  .timespace__diagram { max-width: 320px; margin: 0 auto; }
+}
+
+/* ==========================================================================
+   3. DESKTOP (1024px - 1439px) — base styles in style.css already target this
+   ========================================================================== */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .container { max-width: 1040px; }
+}
+
+/* ==========================================================================
+   4. LARGE SCREENS (1440px+)
+   ========================================================================== */
+@media (min-width: 1440px) {
+  .container { max-width: 1280px; }
+  .hero__title { font-size: 4.6rem; }
+}
+
+/* Touch target comfort on small screens */
+@media (max-width: 767px) {
+  .btn, .accordion__trigger, .navbar__toggle, a { min-height: 44px; }
+  .accordion__trigger { min-height: auto; padding: 1.3rem 0; }
+}
+
+/* ==========================================================================
+   5. TOUCH DEVICES — avoid stuck hover states from the new micro-interactions
+   ========================================================================== */
+@media (hover: none) {
+  .card:hover, .card--dark:hover, .rule-card:hover, .prize-card:hover,
+  .sponsor-slot:hover, .placeholder-frame:hover, .countdown__unit:hover,
+  .btn:hover, .footer__links a:hover, .footer__social a:hover {
+    transform: none;
+  }
+  .btn::before { display: none; }
+}

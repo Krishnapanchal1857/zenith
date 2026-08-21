@@ -1,0 +1,161 @@
+/* ==========================================================================
+   1. REGISTRATION LAYOUT
+   ========================================================================== */
+.reg-body { background: var(--void); }
+
+.reg-nav {
+  position: sticky; top: 0; z-index: 50; background: rgba(8,9,26,0.9); backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(244,243,251,0.08);
+}
+.reg-nav__inner {
+  max-width: 780px; margin: 0 auto; padding: 0.9rem var(--space-md);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.reg-nav__back { font-family: var(--font-mono); font-size: 0.85rem; opacity: 0.8; }
+.reg-nav__back:hover { color: var(--time-gold); opacity: 1; }
+
+.reg-shell {
+  position: relative; max-width: 780px; margin: 0 auto; padding: var(--space-lg) var(--space-md) var(--space-xl);
+  overflow: hidden;
+}
+
+.reg-header { text-align: center; margin-bottom: var(--space-lg); position: relative; z-index: 1; }
+.reg-header__title { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.6rem); }
+.reg-header__desc { font-family: var(--font-mono); font-size: 0.85rem; color: rgba(244,243,251,0.6); margin-top: 0.6rem; }
+
+/* ==========================================================================
+   2. PROGRESS INDICATOR
+   ========================================================================== */
+.progress {
+  display: flex; justify-content: space-between; gap: 0.4rem; margin-bottom: var(--space-lg);
+  position: relative; z-index: 1;
+}
+.progress__step {
+  flex: 1; text-align: center; font-family: var(--font-mono); font-size: 0.7rem;
+  color: rgba(244,243,251,0.4); position: relative;
+}
+.progress__step span {
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem;
+  width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(244,243,251,0.25);
+  font-size: 0.8rem;
+}
+.progress__step.is-active { color: var(--time-gold); }
+.progress__step.is-active span { border-color: var(--time-gold); background: rgba(230,180,92,0.1); }
+.progress__step.is-complete span { border-color: var(--time-gold); background: var(--time-gold); color: var(--void); }
+
+/* ==========================================================================
+   3. PANELS / FORM SECTIONS
+   ========================================================================== */
+.reg-form { position: relative; z-index: 1; }
+
+.reg-panel {
+  border: 1px solid rgba(244,243,251,0.1); border-radius: var(--radius);
+  background: rgba(75,58,130,0.06); padding: var(--space-md); margin-bottom: var(--space-md);
+  animation: panelIn 0.35s ease;
+}
+@keyframes panelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.reg-panel legend {
+  font-family: var(--font-display); font-size: 1.2rem; padding: 0 0 var(--space-sm);
+}
+.reg-panel__hint { font-family: var(--font-mono); font-size: 0.8rem; color: rgba(244,243,251,0.5); margin-bottom: var(--space-sm); }
+
+/* ==========================================================================
+   4. INPUTS
+   ========================================================================== */
+.field { margin-bottom: 1.1rem; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+label { display: block; font-size: 0.85rem; margin-bottom: 0.4rem; color: rgba(244,243,251,0.85); }
+
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  width: 100%; padding: 0.75rem 0.9rem; border-radius: var(--radius-sm);
+  border: 1px solid rgba(244,243,251,0.2); background: rgba(8,9,26,0.6); color: var(--star-white);
+  font-family: var(--font-body); font-size: 0.95rem; transition: border-color 0.2s ease;
+}
+textarea { resize: vertical; min-height: 100px; }
+
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--time-gold); box-shadow: 0 0 0 3px rgba(230,180,92,0.15);
+}
+
+input.is-invalid, select.is-invalid, textarea.is-invalid { border-color: #e6716a; }
+
+.field__error {
+  display: block; font-size: 0.78rem; color: #e6716a; margin-top: 0.35rem; min-height: 1em;
+}
+.field__counter { float: right; font-family: var(--font-mono); font-size: 0.72rem; color: rgba(244,243,251,0.5); }
+
+.checkbox { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; margin-top: 0.6rem; }
+.checkbox input { width: 18px; height: 18px; margin-top: 0.15rem; accent-color: var(--time-gold); }
+
+/* ==========================================================================
+   5. MEMBER CARDS (dynamic)
+   ========================================================================== */
+.member-card {
+  border: 1px solid rgba(244,243,251,0.12); border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-sm) 0.2rem; margin-bottom: var(--space-sm);
+  background: rgba(8,9,26,0.35);
+  animation: panelIn 0.3s ease;
+}
+.member-card h3 { font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 0.8rem; color: var(--time-gold); }
+
+/* ==========================================================================
+   6. PAYMENT SECTION
+   ========================================================================== */
+.payment-summary {
+  text-align: center; padding: var(--space-md); border: 1px dashed rgba(230,180,92,0.35);
+  border-radius: var(--radius); margin-bottom: var(--space-md);
+}
+.payment-summary__label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
+.payment-summary__amount { font-family: var(--font-display); font-size: 2.2rem; color: var(--time-gold); margin: 0.3rem 0; }
+.payment-summary__note { font-size: 0.8rem; color: rgba(244,243,251,0.6); }
+
+.payment-status {
+  padding: 0.8rem 1rem; border-radius: var(--radius-sm); margin-bottom: var(--space-sm);
+  font-family: var(--font-mono); font-size: 0.85rem; border: 1px solid rgba(244,243,251,0.15);
+}
+.payment-status[data-state="pending"] { color: rgba(244,243,251,0.7); }
+.payment-status[data-state="processing"], .payment-status[data-state="verifying"] { color: var(--time-gold); border-color: rgba(230,180,92,0.4); }
+.payment-status[data-state="paid"] { color: #6fd39a; border-color: rgba(111,211,154,0.4); }
+.payment-status[data-state="failed"], .payment-status[data-state="verification_failed"] { color: #e6716a; border-color: rgba(230,113,106,0.4); }
+.payment-status[data-state="cancelled"] { color: #e6b45c; border-color: rgba(230,180,92,0.4); }
+
+.payment-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: var(--space-sm) 0; }
+.payment-disclaimer { font-size: 0.78rem; color: rgba(244,243,251,0.5); margin-top: var(--space-sm); }
+
+/* ==========================================================================
+   7. NAV BUTTONS
+   ========================================================================== */
+.reg-nav-buttons { display: flex; justify-content: space-between; gap: 1rem; margin-top: var(--space-md); }
+.reg-nav-buttons .btn { min-width: 120px; }
+
+/* ==========================================================================
+   8. SUCCESS STATE
+   ========================================================================== */
+.success-panel {
+  max-width: 520px; margin: var(--space-xl) auto; text-align: center; position: relative; z-index: 1;
+  padding: 0 var(--space-md);
+}
+.success-panel__icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+.success-panel h2 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 0.6rem; }
+.success-panel p { color: rgba(244,243,251,0.75); }
+.success-panel__details {
+  margin: var(--space-md) 0; border: 1px solid rgba(244,243,251,0.12); border-radius: var(--radius);
+  padding: var(--space-sm) var(--space-md);
+}
+.success-panel__details div { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(244,243,251,0.08); font-family: var(--font-mono); font-size: 0.85rem; }
+.success-panel__details div:last-child { border-bottom: none; }
+.success-panel__actions { display: flex; gap: 1rem; justify-content: center; margin-top: var(--space-md); flex-wrap: wrap; }
+
+/* ==========================================================================
+   9. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 600px) {
+  .field-row { grid-template-columns: 1fr; }
+  .progress__step { font-size: 0; }
+  .progress__step span { font-size: 0.8rem; }
+  .progress__step.is-active, .progress__step.is-complete { font-size: 0.65rem; }
+  .reg-nav-buttons { flex-direction: column-reverse; }
+  .reg-nav-buttons .btn { width: 100%; }
+}
