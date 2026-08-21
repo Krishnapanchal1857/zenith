@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZENITH | Sathaye College Hackathon</title>
+  <meta name="description"
+    content="ZENITH — the Sathaye College Hackathon. Time × Space × Technology. Build real projects, work with a team, and present your ideas at Sathaye College (Autonomous), Mumbai.">
+  <meta property="og:title" content="ZENITH | Sathaye College Hackathon">
+  <meta property="og:description"
+    content="Time × Space × Technology — ZENITH, a college hackathon at Sathaye College (Autonomous), Vile Parle, Mumbai.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <script type="importmap">
+{
+    "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+    }
+}
+</script>
+
+
+  <style>
+    /* =========================================================
+   ZENITH
+   HACKATHON + CSI CORE TEAM
+   MOBILE RESPONSIVE CSS
+   ========================================================= */
+
+
+    /* =========================================================
+   COMMON
+   ========================================================= */
+
+    .zenith-hackathon,
+    .zenith-core-team {
+      position: relative;
+      width: 100%;
+      padding: 80px 6%;
+      overflow: hidden;
+      color: #fff;
+    }
+
+
+    /* =========================================================
+   BACKGROUNDS
+   ========================================================= */
+
+    .zenith-hackathon {
+      background:
+        radial-gradient(circle at 50% 20%,
+          rgba(108, 76, 205, 0.16),
+          transparent 60%);
+    }
+
+    .zenith-core-team {
+      background:
+        radial-gradient(circle at 50% 80%,
+          rgba(108, 76, 205, 0.13),
+          transparent 60%);
+    }
+
+
+    /* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+    .zenith-section-heading {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+      max-width: 720px;
+
+      margin: 0 auto 45px;
+
+      text-align: center;
+    }
+
+    .zenith-label {
+      display: inline-block;
+
+      color: #f2bb4b;
+
+      font-family: "Courier New", monospace;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 4px;
+
+      text-transform: uppercase;
+
+      text-shadow:
+        0 0 10px rgba(242, 187, 75, 0.35);
+    }
+
+    .zenith-section-heading h2 {
+      margin: 10px 0 12px;
+
+      color: #fff0c7;
+
+      font-family: "Courier New", monospace;
+
+      font-size: clamp(32px, 5vw, 52px);
+
+      font-weight: 700;
+
+      line-height: 1.1;
+
+      letter-spacing: 2px;
+    }
+
+    .zenith-section-heading p {
+      width: 100%;
+      max-width: 620px;
+
+      margin: 0 auto;
+
+      color: #aaa6bd;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 15px;
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================================================
+   HACKATHON FEATURE PHOTO
+   ========================================================= */
+
+    .zenith-feature-photo {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+      max-width: 1050px;
+
+      height: 540px;
+
+      margin: 0 auto;
+
+      overflow: hidden;
+
+      border-radius: 22px;
+
+      background: #100d27;
+
+      border: 1px solid rgba(242, 187, 75, 0.32);
+
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.40),
+        0 0 40px rgba(105, 75, 195, 0.12);
+    }
+
+    .zenith-feature-photo img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition: transform 0.8s var(--ease-out, ease);
+    }
+
+    .zenith-feature-photo:hover img {
+      transform: scale(1.05);
+    }
+
+    .zenith-feature-photo {
+      transition: transform 0.5s var(--ease-out, ease), box-shadow 0.5s var(--ease-out, ease);
+    }
+
+    .zenith-feature-photo:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 26px 70px rgba(0, 0, 0, 0.45),
+        0 0 50px rgba(105, 75, 195, 0.18);
+    }
+
+    /* JS-driven scroll reveal (classes added by animations.js, mirrors [data-reveal]) */
+    .zenith-reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s var(--ease-out, ease), transform 0.7s var(--ease-out, ease);
+    }
+
+    .zenith-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .zenith-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+
+    /* =========================================================
+   HACKATHON IMAGE OVERLAY
+   ========================================================= */
+
+    .zenith-feature-photo::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 1;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(to bottom,
+          rgba(5, 5, 16, 0) 25%,
+          rgba(5, 5, 16, 0.15) 45%,
+          rgba(5, 5, 16, 0.92) 100%);
+    }
+
+    .zenith-photo-overlay {
+      position: absolute;
+
+      z-index: 3;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      padding: 45px;
+    }
+
+    .zenith-photo-overlay span {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #f2bb4b;
+
+      font-family: "Courier New", monospace;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      letter-spacing: 5px;
+    }
+
+    .zenith-photo-overlay h3 {
+      margin: 0 0 8px;
+
+      color: #fff;
+
+      font-family: Arial, sans-serif;
+
+      font-size: clamp(22px, 3vw, 34px);
+
+      line-height: 1.2;
+    }
+
+    .zenith-photo-overlay p {
+      margin: 0;
+
+      color: #d0ccda;
+
+      font-family: "Courier New", monospace;
+
+      font-size: 14px;
+
+      letter-spacing: 2px;
+    }
+
+
+    /* =========================================================
+   CSI TEAM GRID
+   ========================================================= */
+
+    .zenith-team-grid {
+      position: relative;
+
+      z-index: 2;
+
+      width: 100%;
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+      gap: 22px;
+    }
+
+
+    /* =========================================================
+   TEAM CARD
+   ========================================================= */
+
+    .zenith-team-card {
+      position: relative;
+
+      min-width: 0;
+
+      overflow: hidden;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(145deg,
+          rgba(35, 28, 70, 0.90),
+          rgba(12, 10, 30, 0.96));
+
+      border: 1px solid rgba(255, 255, 255, 0.11);
+
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.25);
+
+      transition:
+        transform 0.35s var(--ease-out, ease),
+        border-color 0.35s var(--ease-out, ease),
+        box-shadow 0.35s var(--ease-out, ease);
+    }
+
+    .zenith-team-card:hover {
+      transform: translateY(-9px) scale(1.015);
+
+      border-color:
+        rgba(242, 187, 75, 0.50);
+
+      box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.35),
+        0 0 28px rgba(105, 75, 195, 0.16);
+    }
+
+
+    /* =========================================================
+   TEAM CARD GOLD LINE
+   ========================================================= */
+
+    .zenith-team-card::before {
+      content: "";
+
+      position: absolute;
+
+      z-index: 5;
+
+      top: 0;
+      left: 50%;
+
+      width: 0;
+      height: 2px;
+
+      transform: translateX(-50%);
+
+      background: #f2bb4b;
+
+      box-shadow:
+        0 0 12px #f2bb4b;
+
+      transition: width 0.3s ease;
+    }
+
+    .zenith-team-card:hover::before {
+      width: 70%;
+    }
+
+
+    /* =========================================================
+   TEAM IMAGE
+   ========================================================= */
+
+    .zenith-team-card img {
+      display: block;
+
+      width: 100%;
+      height: 320px;
+
+      object-fit: cover;
+
+      transition: transform 0.5s ease;
+    }
+
+    .zenith-team-card:hover img {
+      transform: scale(1.05);
+    }
+
+
+    /* =========================================================
+   TEAM INFO
+   ========================================================= */
+
+    .zenith-team-info {
+      position: relative;
+
+      z-index: 2;
+
+      padding: 18px 15px 20px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(180deg,
+          rgba(20, 16, 45, 0.96),
+          rgba(8, 7, 20, 0.98));
+    }
+
+    .zenith-team-info h3 {
+      margin: 0 0 6px;
+
+      color: #fff0c7;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 17px;
+
+      font-weight: 700;
+
+      line-height: 1.3;
+    }
+
+    .zenith-team-info p {
+      margin: 0;
+
+      color: #f2bb4b;
+
+      font-family: "Courier New", monospace;
+
+      font-size: 12px;
+
+      letter-spacing: 1px;
+    }
+
+
+    /* =========================================================
+   LARGE TABLET
+   1000px AND BELOW
+   ========================================================= */
+
+    @media (max-width: 1000px) {
+
+      .zenith-team-grid {
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
+
+        gap: 20px;
+      }
+
+      .zenith-feature-photo {
+        height: 500px;
+      }
+    }
+
+
+    /* =========================================================
+   TABLET
+   768px AND BELOW
+   ========================================================= */
+
+    @media (max-width: 768px) {
+
+      .zenith-hackathon,
+      .zenith-core-team {
+        padding: 70px 5%;
+      }
+
+      .zenith-team-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 18px;
+      }
+
+      .zenith-feature-photo {
+        height: 430px;
+
+        border-radius: 18px;
+      }
+
+      .zenith-photo-overlay {
+        padding: 35px;
+      }
+
+      .zenith-team-card img {
+        height: 300px;
+      }
+    }
+
+
+    /* =========================================================
+   MOBILE
+   600px AND BELOW
+   ========================================================= */
+
+    @media (max-width: 600px) {
+
+      .zenith-hackathon,
+      .zenith-core-team {
+        padding: 60px 5%;
+      }
+
+
+      /* SECTION HEADING */
+
+      .zenith-section-heading {
+        margin-bottom: 30px;
+      }
+
+      .zenith-label {
+        font-size: 10px;
+
+        letter-spacing: 3px;
+      }
+
+      .zenith-section-heading h2 {
+        margin-top: 9px;
+
+        font-size: 32px;
+
+        letter-spacing: 1px;
+      }
+
+      .zenith-section-heading p {
+        font-size: 14px;
+
+        line-height: 1.65;
+      }
+
+
+      /* HACKATHON PHOTO */
+
+      .zenith-feature-photo {
+        height: 340px;
+
+        border-radius: 16px;
+      }
+
+      .zenith-feature-photo img {
+        object-position: center;
+      }
+
+
+      /* PHOTO TEXT */
+
+      .zenith-photo-overlay {
+        padding: 25px 20px;
+      }
+
+      .zenith-photo-overlay span {
+        margin-bottom: 6px;
+
+        font-size: 10px;
+
+        letter-spacing: 3px;
+      }
+
+      .zenith-photo-overlay h3 {
+        margin-bottom: 6px;
+
+        font-size: 20px;
+      }
+
+      .zenith-photo-overlay p {
+        font-size: 11px;
+
+        letter-spacing: 1px;
+      }
+
+
+      /* TEAM */
+
+      .zenith-team-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+      }
+
+      .zenith-team-card {
+        border-radius: 16px;
+      }
+
+      .zenith-team-card img {
+        width: 100%;
+
+        height: auto;
+
+        aspect-ratio: 4 / 5;
+
+        object-fit: cover;
+      }
+
+      .zenith-team-info {
+        padding: 16px 12px 18px;
+      }
+
+      .zenith-team-info h3 {
+        font-size: 16px;
+      }
+
+      .zenith-team-info p {
+        font-size: 11px;
+      }
+    }
+
+
+    /* =========================================================
+   SMALL MOBILE
+   400px AND BELOW
+   ========================================================= */
+
+    @media (max-width: 400px) {
+
+      .zenith-hackathon,
+      .zenith-core-team {
+        padding: 50px 16px;
+      }
+
+
+      .zenith-section-heading h2 {
+        font-size: 29px;
+      }
+
+
+      .zenith-section-heading p {
+        font-size: 13px;
+      }
+
+
+      .zenith-feature-photo {
+        height: 290px;
+
+        border-radius: 14px;
+      }
+
+
+      .zenith-photo-overlay {
+        padding: 20px 16px;
+      }
+
+
+      .zenith-photo-overlay h3 {
+        font-size: 18px;
+      }
+
+
+      .zenith-photo-overlay p {
+        font-size: 10px;
+      }
+
+
+      .zenith-team-card img {
+        aspect-ratio: 1 / 1.15;
+      }
+    }
+
+
+    /* =========================================================
+   VERY SMALL PHONES
+   350px AND BELOW
+   ========================================================= */
+
+    @media (max-width: 350px) {
+
+      .zenith-section-heading h2 {
+        font-size: 27px;
+      }
+
+
+      .zenith-feature-photo {
+        height: 260px;
+      }
+
+
+      .zenith-photo-overlay h3 {
+        font-size: 17px;
+      }
+
+
+      .zenith-team-card img {
+        aspect-ratio: 1 / 1.1;
+      }
+    }
+
+
+    /* =========================================================
+   TOUCH DEVICES
+   Remove hover movement on touch screens
+   ========================================================= */
+
+    @media (hover: none) {
+
+      .zenith-feature-photo:hover img {
+        transform: none;
+      }
+
+      .zenith-feature-photo:hover {
+        transform: none;
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.40),
+          0 0 40px rgba(105, 75, 195, 0.12);
+      }
+
+      .zenith-team-card:hover {
+        transform: none;
+      }
+
+      .zenith-team-card:hover img {
+        transform: none;
+      }
+
+      .zenith-team-card:hover::before {
+        width: 0;
+      }
+    }
+
+
+    /* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .zenith-feature-photo,
+      .zenith-feature-photo img,
+      .zenith-team-card,
+      .zenith-team-card img,
+      .zenith-team-card::before {
+        transition: none;
+      }
+
+    }
+
+    /* =========================================================
+       HERO THREE.JS CANVAS — fills full hero, behind text
+       ========================================================= */
+    .hero__three {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Keep starfield canvas on z-index 0, orbits on 1, content on 2 */
+    .hero__canvas  { z-index: 0; }
+    .hero__orbits  { z-index: 1; }
+    .hero__content { z-index: 2; position: relative; }
+    .hero__scroll  { z-index: 2; }
+
+    /* =========================================================
+       MOBILE RESPONSIVE OVERRIDES
+       ========================================================= */
+
+    /* --- Navbar --- */
+    @media (max-width: 900px) {
+      .navbar__links { display: none; }
+      .navbar__toggle { display: flex; }
+      .navbar__cta { display: none; }
+    }
+
+    /* --- Hero --- */
+    @media (max-width: 768px) {
+      .hero { min-height: 100svh; padding-top: 70px; }
+      .hero__content { padding: 0 1.2rem; }
+      .hero__title--zenith { font-size: clamp(2.6rem, 14vw, 5rem); }
+      .hero__tagline { font-size: 0.85rem; }
+      .hero__desc { font-size: 0.9rem; margin-top: 1rem; }
+      .hero__actions { flex-direction: column; align-items: center; gap: 0.7rem; margin-top: 1.5rem; }
+      .hero__actions .btn { width: 100%; max-width: 280px; justify-content: center; }
+      .College-head { font-size: 20px !important; }
+      .ring--1 { width: 200px; height: 200px; }
+      .ring--2 { width: 300px; height: 300px; }
+      .ring--3 { width: 400px; height: 400px; }
+      .ring__dot--1 { left: calc(50% + 150px); transform-origin: -150px 0; }
+      .ring__dot--2 { left: calc(50% - 200px); transform-origin: 200px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__title--zenith { font-size: clamp(2.2rem, 16vw, 3.5rem); letter-spacing: 0.08em; }
+      .eyebrow--hero { font-size: 0.68rem; }
+      .hero__label { font-size: 0.72rem; }
+    }
+
+    /* --- About grid --- */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-grid__media { display: none; }
+    }
+
+    /* --- Theme / rule / why grids --- */
+    @media (max-width: 900px) {
+      .grid--themes, .grid--why, .grid--rules { grid-template-columns: repeat(2, 1fr); }
+      .grid--sponsors { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .grid--themes, .grid--why, .grid--rules, .grid--sponsors { grid-template-columns: 1fr; }
+      .grid--prizes { grid-template-columns: 1fr; }
+    }
+
+    /* --- Timeline --- */
+    @media (max-width: 560px) {
+      .timeline { padding-left: 1rem; }
+      .timeline__item { padding-left: 1.5rem; }
+    }
+
+    /* --- Process steps --- */
+    @media (max-width: 640px) {
+      .process { flex-direction: column; gap: 1rem; }
+    }
+
+    /* --- Container padding on small screens --- */
+    @media (max-width: 480px) {
+      .container { padding: 0 1rem; }
+      .section { padding: 3.5rem 0; }
+    }
+
+    /* --- Marquee font size on mobile --- */
+    @media (max-width: 600px) {
+      .College-head { font-size: 18px !important; letter-spacing: 1px !important; }
+    }
+
+    /* =========================================================
+       HERO — TWO-COLUMN: Globe left | Text right
+       ========================================================= */
+    .hero {
+      /* override default center-align from style.css */
+      text-align: left !important;
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* Hide the pure-CSS orbit rings — Three.js draws the 3D ones */
+    .hero__orbits { display: none; }
+
+    /* Inner wrapper that splits the hero into two halves */
+    .hero__split {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      min-height: 100svh;
+      padding: 5rem 0 4rem;
+    }
+
+    /* Right column — all the text */
+    .hero__text-col {
+      padding: 0 3rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .hero__text-col .hero__title--zenith {
+      text-align: left;
+    }
+
+    .hero__text-col .eyebrow--hero {
+      text-align: left;
+    }
+
+    .hero__text-col .hero__actions {
+      justify-content: flex-start;
+      margin-top: 2rem;
+    }
+
+    /* Marquee spans full width above the split */
+    .hero__marquee-bar {
+      position: absolute;
+      top: 70px;
+      left: 0; right: 0;
+      z-index: 3;
+      padding: 0.5rem 0;
+      background: rgba(8,9,26,0.45);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid rgba(230,180,92,0.18);
+    }
+
+    /* Responsive: stack on mobile */
+    @media (max-width: 768px) {
+      .hero__split {
+        grid-template-columns: 1fr;
+        padding-top: 8rem;
+      }
+      .hero__globe-col { display: none; }
+      .hero__text-col {
+        padding: 0 1.4rem;
+        text-align: center;
+        align-items: center;
+      }
+      .hero__text-col .hero__title--zenith,
+      .hero__text-col .eyebrow--hero { text-align: center; }
+      .hero__text-col .hero__actions { justify-content: center; flex-direction: column; align-items: center; }
+      .hero__text-col .hero__actions .btn { width: 100%; max-width: 280px; }
+      .hero__marquee-bar { top: 56px; }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ============ SKIP LINK ============ -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#home" class="navbar__brand"><img style="height: 40px;" src="images - Copy.jpeg" alt="">
+        <!-- <span class="navbar__ring" aria-hidden="true">FHFG</span> -->
+        <span class="navbar__wordmark-group">
+          <span class="navbar__wordmark"><em>ZENITH</em></span>
+          <span class="navbar__subtitle">Sathaye College Hackathon</span>
+        </span>
+      </a>
+
+      <nav class="navbar__links" id="navLinks" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#hackathon">Hackathon</a>
+        <a href="#csi-core-team">CSI</a>
+        <a href="#themes">Themes</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#rules">Rules</a>
+        <a href="#prizes">Prizes</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <!-- <li><a href="#hackathon">Hackathon</a></li> -->
+
+      </nav>
+
+      <a href="zen1.html" class="btn btn--cta navbar__cta"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register
+        Now</a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"
+        aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE MENU ============ -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+    <nav aria-label="Mobile">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#themes">Themes</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="#hackathon">Hackathon</a>
+      <a href="#csi-core-team">CSI</a>
+      <a href="zen1.html" class="btn btn--cta"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Now</a>
+    </nav>
+  </div>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <!-- Star-field canvas (absolute background) -->
+      <canvas class="hero__canvas" id="starCanvas" aria-hidden="true"></canvas>
+      <!-- Three.js WebGL canvas (absolute, full-cover, draws globe on left half) -->
+      <canvas class="hero__three" id="heroThree" aria-hidden="true"></canvas>
+
+      <!-- Marquee banner — sits above the split at the top -->
+      <div class="hero__marquee-bar" aria-hidden="true">
+        <marquee style="color: rgb(240, 226, 164);" direction="left">
+          <span class="College-head" style="font-family: Engravers MT; font-size: 26px; letter-spacing:2px; white-space:nowrap;">
+            Parle Tilak Vidyalaya Association's Sathaye College (Autonomous) &nbsp;&bull;&nbsp; Department of IT &nbsp;&bull;&nbsp; Zenith Hackathon 1.0
+          </span>
+        </marquee>
+      </div>
+
+      <!-- Two-column split -->
+      <div class="hero__split">
+        <!-- Left: empty space where the WebGL globe renders -->
+        <div class="hero__globe-col" aria-hidden="true"></div>
+
+        <!-- Right: all text content -->
+        <div class="hero__text-col">
+          <p class="eyebrow eyebrow--hero">Enter the Dimension</p>
+          <h1 class="hero__title hero__title--zenith">ZENITH</h1>
+          <p class="hero__tagline">Build &middot; Innovate &middot; Create</p>
+          <p class="hero__label">Time &times; Space // 2026</p>
+          <h4 class="hero__desc" style="color: #d5d4d4ff; max-width: 44ch;">Bring your ideas to life, solve real-world problems and build innovative technology solutions with your team.</h4>
+          <div class="hero__actions">
+            <a href="https://unstop.com/hackathons/" class="btn btn--primary">
+              <i class="fa-solid fa-bolt"></i> Powered By <img height="28" width="85" src="assets/icons/unstop (2).png" alt="Unstop" style="vertical-align:middle;">
+            </a>
+            <a href="#hackathon" class="btn btn--ghost">Explore &nbsp;<i class="fa-solid fa-arrow-down"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="hero__scroll" aria-label="Scroll to next section">
+        <span class="hero__scroll-line"></span>
+      </a>
+    </section>
+
+
+    <!-- ============ ABOUT SATHAYE COLLEGE (light / time) ============ -->
+    <section class="section section--light" id="about">
+      <div class="container about-grid">
+        <div class="about-grid__text">
+          <p class="eyebrow">About the Host</p>
+          <h2>Sathaye College</h2>
+          <p class="lede">Parle Tilak Vidyalaya Association's Sathaye College (Autonomous) has stood on Dixit Road, Vile
+            Parle (East), Mumbai since 1959 — offering programs across Arts, Commerce and Science, including B.Sc.
+            Information Technology.</p>
+          <a href="https://sathayecollege.edu.in/" target="_blank" rel="noopener" class="btn btn--outline"><i
+              class="fa-solid fa-arrow-up-right-from-square"></i> Visit Official Website</a>
+        </div>
+        <div class="about-grid__media">
+          <div class="placeholder-frame" data-label=""><img src="home-page-slider-1.jpeg" alt=""></div>
+          <div width="250px" class="placeholder-frame placeholder-frame--sm" data-label=""><img src="images - Copy.jpeg"
+              alt="saythe" height="150px" width="230"></div>
+        </div>
+      </div>
+    </section>
+    <!-- =====================================================
+     HACKATHON SECTION
+     ONE FEATURED PHOTO
+     ===================================================== -->
+
+    <section id="hackathon" class="zenith-hackathon">
+
+      <div class="zenith-section-heading">
+
+        <span class="zenith-label">ZENITH 2026</span>
+
+        <h2>Hackathon</h2>
+
+        <p>
+          A glimpse from our hackathon — where ideas,
+          innovation and technology came together.
+        </p>
+
+      </div>
+
+
+      <div class="zenith-feature-photo">
+
+        <!-- REPLACE THIS IMAGE LATER -->
+        <img src="hack.png" alt="Zenith Hackathon">
+
+        <div class="zenith-photo-overlay">
+
+          <span>ZENITH</span>
+
+          <h3>Sathaye College Hackathon Core Team</h3>
+
+          <p>
+            Build • Innovate • Create
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+     CSI CORE TEAM SECTION
+     ===================================================== -->
+
+    <section id="csi-core-team" class="zenith-core-team">
+
+      <div class="zenith-section-heading">
+
+        <span class="zenith-label">OUR TEAM</span>
+
+        <h2>CSI Core Team</h2>
+
+        <p>
+          Meet the people behind our community,
+          events and innovations.
+        </p>
+
+      </div>
+
+
+      <div class="zenith-team-grid">
+
+
+        <!-- MEMBER 1 -->
+
+        <div class="zenith-team-card">
+
+          <!-- REPLACE IMAGE LATER -->
+          <img src="https://placehold.co/600x700/15112f/f2bb4b?text=PRESIDENT" alt="CSI President">
+
+          <div class="zenith-team-info">
+            <h3>SANSKAR SOOD</h3>
+            <p>President</p>
+          </div>
+
+        </div>
+
+
+        <!-- MEMBER 2 -->
+
+        <div class="zenith-team-card">
+
+          <img src="https://placehold.co/600x700/15112f/f2bb4b?text=VICE+PRESIDENT" alt="CSI Vice President">
+
+          <div class="zenith-team-info">
+            <h3>Lakshya Mali</h3>
+            <p>Chair Person</p>
+          </div>
+
+        </div>
+
+
+        <!-- MEMBER 3 -->
+
+        <div class="zenith-team-card">
+
+          <img src="https://placehold.co/600x700/15112f/f2bb4b?text=SECRETARY" alt="CSI Secretary">
+
+          <div class="zenith-team-info">
+            <h3>Krishna Mestry</h3>
+            <p>Secretary</p>
+          </div>
+
+        </div>
+
+
+        <!-- MEMBER 4 -->
+
+        <div class="zenith-team-card">
+
+          <img src="https://placehold.co/600x700/15112f/f2bb4b?text=TREASURER" alt="CSI Treasurer">
+
+          <div class="zenith-team-info">
+            <h3>Krishita Yadav</h3>
+            <p>Treasurer</p>
+          </div>
+
+        </div>
+
+
+        <!-- MEMBER 5 -->
+
+        <div class="zenith-team-card">
+
+          <img src="https://placehold.co/600x700/15112f/f2bb4b?text=TECHNICAL+HEAD" alt="Technical Head">
+
+          <div class="zenith-team-info">
+            <h3>Your Name</h3>
+            <p>Technical Head</p>
+          </div>
+
+        </div>
+
+
+        <!-- MEMBER 6 -->
+
+        <div class="zenith-team-card">
+
+          <img src="https://placehold.co/600x700/15112f/f2bb4b?text=EVENT+HEAD" alt="Event Head">
+
+          <div class="zenith-team-info">
+            <h3>Your Name</h3>
+            <p>Event Head</p>
+          </div>
+
+        </div>
+
+
+        <!-- MEMBER 7 -->
+
+        <div class="zenith-team-card">
+
+          <img src="https://placehold.co/600x700/15112f/f2bb4b?text=PR+HEAD" alt="PR Head">
+
+          <div class="zenith-team-info">
+
+            <h3>Your Name</h3>
+
+            <p>PR Head</p>
+
+          </div>
+
+        </div>
+
+
+        <!-- MEMBER 8 -->
+
+        <div class="zenith-team-card">
+
+          <img src="https://placehold.co/600x700/15112f/f2bb4b?text=DESIGN+HEAD" alt="Design Head">
+
+          <div class="zenith-team-info">
+
+            <h3>Your Name</h3>
+
+            <p>Design Head</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- ============ ABOUT HACKATHON (dark / space) ============ -->
+    <section class="section section--dark" id="hackathon">
+      <canvas class="section__stars" data-stars aria-hidden="true"></canvas>
+      <div class="container">
+        <p class="eyebrow">The Journey</p>
+        <h2 class="section__title">Where Ideas Become Innovation</h2>
+
+        <ol class="process">
+          <li class="process__step" data-reveal><span class="process__ring"></span><span
+              class="process__label">Problem</span></li>
+          <li class="process__step" data-reveal><span class="process__ring"></span><span
+              class="process__label">Idea</span></li>
+          <li class="process__step" data-reveal><span class="process__ring"></span><span
+              class="process__label">Build</span></li>
+          <li class="process__step" data-reveal><span class="process__ring"></span><span
+              class="process__label">Test</span></li>
+          <li class="process__step" data-reveal><span class="process__ring"></span><span
+              class="process__label">Present</span></li>
+          <li class="process__step" data-reveal><span class="process__ring"></span><span
+              class="process__label">Evaluate</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ TIME x SPACE SIGNATURE SECTION (dark / space) ============ -->
+    <section class="section section--void" id="timespace">
+      <div class="container timespace">
+        <div class="timespace__diagram" aria-hidden="true">
+          <svg viewBox="0 0 400 400" class="timespace__svg">
+            <circle class="orbit-path" cx="200" cy="200" r="170" />
+            <circle class="orbit-path" cx="200" cy="200" r="120" />
+            <circle class="orbit-path" cx="200" cy="200" r="70" />
+            <g class="clock-ticks">
+              <!-- 12 tick marks generated -->
+            </g>
+            <circle class="orbit-core" cx="200" cy="200" r="10" />
+            <circle class="orbit-satellite orbit-satellite--1" cx="370" cy="200" r="5" />
+            <circle class="orbit-satellite orbit-satellite--2" cx="200" cy="80" r="4" />
+          </svg>
+        </div>
+        <div class="timespace__text">
+          <p class="eyebrow">The Identity</p>
+          <h2 class="section__title">Time × Space × Technology</h2>
+          <p class="lede lede--light">Every team gets a fixed window and an open field — a countdown that doesn't wait,
+            and a problem space wide enough to build something genuinely yours. That tension between limits and
+            possibility is the shape of this hackathon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THEMES (light / time) ============ -->
+    <section class="section section--light" id="themes">
+      <div class="container">
+        <p class="eyebrow">Problem Space</p>
+        <h2 class="section__title">Themes</h2>
+        <p class="section__note">These are suggested / placeholder themes. Official themes will be announced by the
+          organizers.</p>
+
+        <div class="grid grid--themes">
+          <article class="card" data-reveal><i class="fa-solid fa-robot card__icon"></i>
+            <h3>AI &amp; Machine Learning</h3>
+            <p>Intelligent systems that learn, predict, and assist.</p>
+          </article>
+          <article class="card" data-reveal><i class="fa-solid fa-globe card__icon"></i>
+            <h3>Web Development</h3>
+            <p>Fast, accessible, well-built experiences for the web.</p>
+          </article>
+          <article class="card" data-reveal><i class="fa-solid fa-graduation-cap card__icon"></i>
+            <h3>Education Technology</h3>
+            <p>Tools that make learning more effective and reachable.</p>
+          </article>
+          <article class="card" data-reveal><i class="fa-solid fa-stethoscope card__icon"></i>
+            <h3>Healthcare Technology</h3>
+            <p>Solutions that improve care, access, and outcomes.</p>
+          </article>
+          <article class="card" data-reveal><i class="fa-solid fa-seedling card__icon"></i>
+            <h3>Sustainability</h3>
+            <p>Technology in service of a livable future.</p>
+          </article>
+          <article class="card" data-reveal><i class="fa-solid fa-building-columns card__icon"></i>
+            <h3>Smart Campus</h3>
+            <p>Reimagining how a college campus runs and connects.</p>
+          </article>
+          <article class="card" data-reveal><i class="fa-solid fa-shield-halved card__icon"></i>
+            <h3>Cyber Safety</h3>
+            <p>Protecting people and data in a connected world.</p>
+          </article>
+          <article class="card" data-reveal><i class="fa-solid fa-credit-card card__icon"></i>
+            <h3>FinTech</h3>
+            <p>Rethinking how people manage and move money.</p>
+          </article>
+          <article class="card" data-reveal><i class="fa-solid fa-handshake card__icon"></i>
+            <h3>Social Impact</h3>
+            <p>Technology that serves communities directly.</p>
+          </article>
+          <article class="card" data-reveal><i class="fa-solid fa-sparkles card__icon"></i>
+            <h3>Open Innovation</h3>
+            <p>Bring your own problem — if it matters, build it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY PARTICIPATE (dark / space) ============ -->
+    <section class="section section--dark" id="why">
+      <canvas class="section__stars" data-stars aria-hidden="true"></canvas>
+      <div class="container">
+        <p class="eyebrow">The Case</p>
+        <h2 class="section__title">Why Participate</h2>
+        <div class="grid grid--why">
+          <article class="card card--dark" data-reveal><span class="card__icon">🚀</span>
+            <h3>Build Real Projects</h3>
+          </article>
+          <article class="card card--dark" data-reveal><span class="card__icon">💡</span>
+            <h3>Turn Ideas Into Solutions</h3>
+          </article>
+          <article class="card card--dark" data-reveal><span class="card__icon">🤝</span>
+            <h3>Work With Your Team</h3>
+          </article>
+          <article class="card card--dark" data-reveal><span class="card__icon">🎤</span>
+            <h3>Present Your Project</h3>
+          </article>
+          <article class="card card--dark" data-reveal><span class="card__icon">🏆</span>
+            <h3>Gain Recognition</h3>
+          </article>
+          <article class="card card--dark" data-reveal><span class="card__icon">📚</span>
+            <h3>Learn New Technologies</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIMELINE (light / time) ============ -->
+    <section class="section section--light" id="timeline">
+      <div class="container">
+        <p class="eyebrow">Countdown</p>
+        <h2 class="section__title">Timeline</h2>
+
+        <div class="timeline">
+          <div class="timeline__line" aria-hidden="true"></div>
+          <div class="timeline__item" data-reveal><span class="timeline__node"></span>
+            <h3>Registration Opens</h3>
+            <p>To be announced</p>
+          </div>
+          <div class="timeline__item" data-reveal><span class="timeline__node"></span>
+            <h3>Registration Closes</h3>
+            <p>To be announced</p>
+          </div>
+          <div class="timeline__item" data-reveal><span class="timeline__node"></span>
+            <h3>Hackathon Day</h3>
+            <p>To be announced</p>
+          </div>
+          <div class="timeline__item" data-reveal><span class="timeline__node"></span>
+            <h3>Project Submission</h3>
+            <p>To be announced</p>
+          </div>
+          <div class="timeline__item" data-reveal><span class="timeline__node"></span>
+            <h3>Presentation</h3>
+            <p>To be announced</p>
+          </div>
+          <div class="timeline__item" data-reveal><span class="timeline__node"></span>
+            <h3>Judging</h3>
+            <p>To be announced</p>
+          </div>
+          <div class="timeline__item" data-reveal><span class="timeline__node"></span>
+            <h3>Results</h3>
+            <p>To be announced</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 12 HOUR / COUNTDOWN (void) ============ -->
+    <section class="section section--void" id="countdown">
+      <div class="container countdown">
+        <p class="eyebrow">12 Hours &middot; One Team</p>
+        <h2 class="section__title">Infinite Possibilities</h2>
+        <p class="section__note section__note--light">Event date — to be announced</p>
+        <div class="countdown__display" id="countdownDisplay" aria-live="polite">
+          <div class="countdown__unit"><span id="cdDays">24</span><label>Days</label></div>
+          <div class="countdown__unit"><span id="cdHours">80</span><label>Hours</label></div>
+          <div class="countdown__unit"><span id="cdMinutes">80</span><label>Minutes</label></div>
+          <div class="countdown__unit"><span id="cdSeconds">0</span><label>Seconds</label></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RULES (light / time) ============ -->
+    <section class="section section--light" id="rules">
+      <div class="container">
+        <p class="eyebrow">Read Before You Build</p>
+        <h2 class="section__title">Rules</h2>
+        <p class="section__note">Official rules will be announced by the organizers. Categories below are indicative.
+        </p>
+
+        <div class="grid grid--rules">
+          <div class="rule-card" data-reveal>
+            <h3>Eligibility</h3>
+            <p>Details to be announced.</p>
+          </div>
+          <div class="rule-card" data-reveal>
+            <h3>Team Size</h3>
+            <p>Up to 4 members per team.</p>
+          </div>
+          <div class="rule-card" data-reveal>
+            <h3>Project Originality</h3>
+            <p>Details to be announced.</p>
+          </div>
+          <div class="rule-card" data-reveal>
+            <h3>Submission</h3>
+            <p>Details to be announced.</p>
+          </div>
+          <div class="rule-card" data-reveal>
+            <h3>Presentation</h3>
+            <p>Details to be announced.</p>
+          </div>
+          <div class="rule-card" data-reveal>
+            <h3>Judging</h3>
+            <p>Details to be announced.</p>
+          </div>
+          <div class="rule-card" data-reveal>
+            <h3>Deadline</h3>
+            <p>Details to be announced.</p>
+          </div>
+          <div class="rule-card" data-reveal>
+            <h3>Code Requirements</h3>
+            <p>Details to be announced.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JUDGING CRITERIA (dark) ============ -->
+    <section class="section section--dark" id="judging">
+      <canvas class="section__stars" data-stars aria-hidden="true"></canvas>
+      <div class="container">
+        <p class="eyebrow">How Projects Are Scored</p>
+        <h2 class="section__title">Judging Criteria</h2>
+        <div class="grid grid--why">
+          <article class="card card--dark" data-reveal>
+            <h3>Innovation</h3>
+          </article>
+          <article class="card card--dark" data-reveal>
+            <h3>Technical Implementation</h3>
+          </article>
+          <article class="card card--dark" data-reveal>
+            <h3>Problem Solving</h3>
+          </article>
+          <article class="card card--dark" data-reveal>
+            <h3>User Experience</h3>
+          </article>
+          <article class="card card--dark" data-reveal>
+            <h3>Impact</h3>
+          </article>
+          <article class="card card--dark" data-reveal>
+            <h3>Presentation</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRIZES (light) ============ -->
+    <section class="section section--light" id="prizes">
+      <div class="container">
+        <p class="eyebrow">What's at Stake</p>
+        <h2 class="section__title">Prizes</h2>
+        <div class="grid grid--prizes">
+          <div class="prize-card prize-card--gold" data-reveal><i
+              class="fa-solid fa-trophy prize-card__medal prize-card__medal--gold"></i>
+            <h3>First Prize</h3>
+            <p>To be announced</p>
+          </div>
+          <div class="prize-card prize-card--silver" data-reveal><i
+              class="fa-solid fa-medal prize-card__medal prize-card__medal--silver"></i>
+            <h3>Second Prize</h3>
+            <p>To be announced</p>
+          </div>
+          <div class="prize-card prize-card--bronze" data-reveal><i
+              class="fa-solid fa-medal prize-card__medal prize-card__medal--bronze"></i>
+            <h3>Third Prize</h3>
+            <p>To be announced</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPONSORS (dark) ============ -->
+    <section class="section section--dark" id="sponsors">
+      <canvas class="section__stars" data-stars aria-hidden="true"></canvas>
+      <div class="container">
+        <p class="eyebrow">Partners &amp; Sponsors</p>
+        <h2 class="section__title">Backed By</h2>
+        <div class="grid grid--sponsors">
+          <div class="sponsor-slot" data-reveal>Sponsor logo — TBA</div>
+          <div class="sponsor-slot" data-reveal>Sponsor logo — TBA</div>
+          <div class="sponsor-slot" data-reveal>Sponsor logo — TBA</div>
+          <div class="sponsor-slot" data-reveal>Sponsor logo — TBA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ (light) ============ -->
+    <section class="section section--light" id="faq">
+      <div class="container container--narrow">
+        <p class="eyebrow">Common Questions</p>
+        <h2 class="section__title">FAQ</h2>
+
+        <div class="accordion" id="accordion">
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">What is the hackathon?</button>
+            <div class="accordion__panel">
+              <p>A time-boxed event where teams design, build and present a technology project.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">Who can participate?</button>
+            <div class="accordion__panel">
+              <p>Eligibility details will be announced by the organizers.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">How many members can be in a team?</button>
+            <div class="accordion__panel">
+              <p>Teams can have between 1 and 4 members.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">What technologies can we use?</button>
+            <div class="accordion__panel">
+              <p>Details will be announced by the organizers.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">What is the registration fee?</button>
+            <div class="accordion__panel">
+              <p>Registration for ZENITH is free.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">How do I register?</button>
+            <div class="accordion__panel">
+              <p>Fill in the registration form with your team and leader details — no payment is required to submit.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">When is registration confirmed?</button>
+            <div class="accordion__panel">
+              <p>As soon as your form is submitted successfully, a registration ID is generated and your team is added
+                to our list.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">What happens if my submission fails?</button>
+            <div class="accordion__panel">
+              <p>Your registration is not recorded and you can simply try submitting the form again.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">Will I receive a registration ID?</button>
+            <div class="accordion__panel">
+              <p>Yes — a unique ID (e.g. HACK-0001) is generated automatically once your form is submitted.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">Where is registration data stored?</button>
+            <div class="accordion__panel">
+              <p>In a private database accessible only to the organizing team.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">Can I edit my registration after
+              submitting?</button>
+            <div class="accordion__panel">
+              <p>Reach out to the organizing team via the contact section below to update any details.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT (dark) ============ -->
+    <section class="section section--void" id="contact">
+      <div class="container container--narrow contact">
+        <p class="eyebrow">Get in Touch</p>
+        <h2 class="section__title">Contact</h2>
+        <address class="contact__address">
+          <i class="fa-solid fa-location-dot"></i>
+          Sathaye College (Autonomous)<br>
+          Dixit Road, Vile Parle (East),<br>
+          Mumbai – 400057, Maharashtra, India
+        </address>
+        <a href="https://sathayecollege.edu.in/" target="_blank" rel="noopener" class="btn btn--outline"><i
+            class="fa-solid fa-arrow-up-right-from-square"></i> Official College Website</a>
+        <p class="contact__placeholder">Organizer phone, email and social links — to be provided.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <p class="footer__wordmark">ZENITH</p>
+        <p class="footer__tag">Sathaye College Hackathon &middot; Time × Space × Technology</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#hackathon">Hackathon</a>
+        <a href="#themes">Themes</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#rules">Rules</a>
+        <a href="#prizes">Prizes</a>
+        <a href="#faq">FAQ</a>
+        <a href="register.html">Register</a>
+      </nav>
+      <div class="footer__social">
+        <a href="https://sathayecollege.edu.in/" target="_blank" rel="noopener">Official College Website</a>
+        <div class="footer__placeholder">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/reel/DbvbsvuznaV/?igsh=OGZudjhjYTY2eW8y" target="_blank"
+            rel="noopener noreferrer" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          &nbsp;
+          <!-- WhatsApp -->
+          <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          &nbsp;
+          <!-- GitHub -->
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <p class="footer__copyright">© 2026 ZENITH — Sathaye College Hackathon</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <!-- Three.js hero — globe on LEFT half, text on right -->
+  <script type="module">
+    import * as THREE from 'three';
+
+    const canvas  = document.getElementById('heroThree');
+    const heroSection = document.getElementById('home');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // How far left to push the globe in scene units.
+    // With camera at z=14, FOV=50, the scene half-width ≈ 6.5 units.
+    // -3.5 places the globe centred in the LEFT quarter of the canvas.
+    const GLOBE_X = -3.5;
+
+    if (canvas && heroSection && window.WebGLRenderingContext) {
+      let renderer, scene, camera, core, ring1, ring2, ring3, dot1, dot2, running = true, animId;
+
+      function init() {
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+        scene = new THREE.Scene();
+
+        /* --- Golden wireframe icosahedron, shifted left --- */
+        core = new THREE.Mesh(
+          new THREE.IcosahedronGeometry(3.5, 1),
+          new THREE.MeshBasicMaterial({ color: 0xe6b45c, wireframe: true, transparent: true, opacity: 0.72 })
+        );
+        core.position.x = GLOBE_X;
+        scene.add(core);
+
+        /* --- Orbit ring 1 (inner, white-ish) --- */
+        ring1 = new THREE.Mesh(
+          new THREE.TorusGeometry(5.0, 0.022, 8, 128),
+          new THREE.MeshBasicMaterial({ color: 0xf4f3fb, transparent: true, opacity: 0.22 })
+        );
+        ring1.position.x = GLOBE_X;
+        ring1.rotation.x = Math.PI / 2.4;
+        scene.add(ring1);
+
+        /* --- Orbit ring 2 (purple-ish) --- */
+        ring2 = new THREE.Mesh(
+          new THREE.TorusGeometry(6.2, 0.016, 8, 128),
+          new THREE.MeshBasicMaterial({ color: 0x9b82ff, transparent: true, opacity: 0.35 })
+        );
+        ring2.position.x = GLOBE_X;
+        ring2.rotation.x = Math.PI / 1.8;
+        ring2.rotation.y = Math.PI / 5;
+        scene.add(ring2);
+
+        /* --- Orbit ring 3 (outer, faint) --- */
+        ring3 = new THREE.Mesh(
+          new THREE.TorusGeometry(7.8, 0.012, 8, 128),
+          new THREE.MeshBasicMaterial({ color: 0xf4f3fb, transparent: true, opacity: 0.10 })
+        );
+        ring3.position.x = GLOBE_X;
+        ring3.rotation.x = Math.PI / 3;
+        scene.add(ring3);
+
+        /* --- Orbiting gold dots --- */
+        dot1 = new THREE.Mesh(
+          new THREE.SphereGeometry(0.14, 12, 12),
+          new THREE.MeshBasicMaterial({ color: 0xe6b45c })
+        );
+        scene.add(dot1);
+
+        dot2 = new THREE.Mesh(
+          new THREE.SphereGeometry(0.10, 12, 12),
+          new THREE.MeshBasicMaterial({ color: 0xe6b45c })
+        );
+        scene.add(dot2);
+
+        /* --- Faint ambient glow sphere --- */
+        const glow = new THREE.Mesh(
+          new THREE.SphereGeometry(4.2, 20, 20),
+          new THREE.MeshBasicMaterial({ color: 0x4b3a82, transparent: true, opacity: 0.08, side: THREE.BackSide })
+        );
+        glow.position.x = GLOBE_X;
+        scene.add(glow);
+
+        resize();
+        window.addEventListener('resize', resize, { passive: true });
+
+        const io = new IntersectionObserver((entries) => {
+          running = entries[0].isIntersecting;
+          if (running && !reduceMotion) { cancelAnimationFrame(animId); animId = requestAnimationFrame(animate); }
+        }, { threshold: 0.01 });
+        io.observe(heroSection);
+
+        reduceMotion ? renderer.render(scene, camera) : (animId = requestAnimationFrame(animate));
+      }
+
+      function resize() {
+        const w = heroSection.offsetWidth  || window.innerWidth;
+        const h = heroSection.offsetHeight || window.innerHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+
+      const clock = new THREE.Clock();
+      function animate() {
+        if (!running || reduceMotion) return;
+        animId = requestAnimationFrame(animate);
+        const t = clock.getElapsedTime();
+
+        /* Smooth rotation of core */
+        core.rotation.y = t * 0.30;
+        core.rotation.x = t * 0.13;
+
+        /* Counter-rotating rings */
+        ring1.rotation.z =  t * 0.11;
+        ring2.rotation.z = -t * 0.07;
+        ring3.rotation.z =  t * 0.04;
+
+        /* Satellite dots orbit around the globe centre (GLOBE_X, 0, 0) */
+        dot1.position.set(
+          GLOBE_X + Math.cos(t * 0.38) * 5.0,
+          Math.sin(t * 0.38) * 5.0 * Math.sin(Math.PI / 2.4),
+          Math.sin(t * 0.38) * 5.0 * Math.cos(Math.PI / 2.4)
+        );
+        dot2.position.set(
+          GLOBE_X + Math.cos(t * 0.24 + 2.1) * 6.2,
+          Math.sin(t * 0.24 + 2.1) * 6.2 * Math.sin(Math.PI / 1.8),
+          Math.sin(t * 0.24 + 2.1) * 6.2 * Math.cos(Math.PI / 1.8)
+        );
+
+        renderer.render(scene, camera);
+      }
+
+      /* Initialise camera (centred, looking along -Z) */
+      camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
+      camera.position.set(0, 0, 14);
+
+      try { init(); } catch (e) { console.warn('WebGL unavailable:', e); }
+    }
+  </script>
+</body>
+
+</html>
