@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZEENITH | Hackathon Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body{
+    font-family:'IBM Plex Sans', Arial, sans-serif;
+    min-height:100vh;
+    padding:30px 15px;
+    color:#fff;
+    background:#060912;
+    overflow-x:hidden;
+}
+
+@media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+        animation-duration:0.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important;
+        scroll-behavior:auto !important;
+    }
+}
+
+#three-bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+.container{
+    width:100%;
+    max-width:700px;
+    margin:auto;
+    padding:35px;
+    border-radius:24px;
+
+    background:rgba(255,255,255,.07);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.14);
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.5);
+
+    animation:slideUp .9s var(--ease-out);
+}
+
+@keyframes slideUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.section-title, .form-group, .member-card, .payment-box{
+    opacity:0;
+    animation:fieldIn .6s var(--ease-out) forwards;
+}
+@keyframes fieldIn{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+@media (prefers-reduced-motion: reduce){
+    .section-title, .form-group, .member-card, .payment-box{ animation:none; opacity:1; }
+}
+
+.header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.college-name{
+    color:#66b3ff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:4px;
+    margin-bottom:10px;
+}
+
+h1{
+    font-family:'Space Grotesk', Arial, sans-serif;
+    font-size:clamp(45px,10vw,75px);
+    letter-spacing:6px;
+    font-weight:700;
+
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #55aaff,
+        #b866ff
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:titleGlow 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow{
+    from{
+        filter:drop-shadow(0 0 3px rgba(0,123,255,.2));
+    }
+    to{
+        filter:drop-shadow(0 0 20px rgba(0,123,255,.5));
+    }
+}
+
+.subtitle{
+    color:#aeb8c8;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.tag{
+    display:inline-block;
+    margin-top:15px;
+    padding:8px 16px;
+    border-radius:30px;
+    border:1px solid rgba(80,170,255,.5);
+    color:#66b3ff;
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:#66b3ff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    margin:30px 0 20px;
+}
+
+.section-title::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:rgba(255,255,255,.12);
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-size:13px;
+    font-weight:bold;
+    color:#e9edf5;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:14px;
+
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.14);
+
+    background:rgba(0,0,0,.25);
+    color:#fff;
+
+    outline:none;
+    font-size:14px;
+
+    transition:border-color .3s var(--ease-out), box-shadow .3s var(--ease-out), transform .3s var(--ease-out), background .3s var(--ease-out);
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#7f8999;
+}
+
+input:hover,
+select:hover,
+textarea:hover{
+    border-color:rgba(255,255,255,.28);
+    background:rgba(0,0,0,.32);
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#4da6ff;
+    box-shadow:0 0 0 3px rgba(0,123,255,.12);
+    transform:translateY(-2px);
+}
+
+select option{
+    background:#101522;
+}
+
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.member-card{
+    padding:16px;
+    margin-bottom:12px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+.member-card:hover{
+    transform:translateX(5px);
+    border-color:rgba(80,170,255,.4);
+}
+
+.member-number{
+    color:#66b3ff;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:10px;
+    letter-spacing:1px;
+}
+
+.payment-box{
+    padding:24px;
+    border-radius:16px;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.12);
+
+    text-align:center;
+}
+
+.payment-amount-box{
+    display:inline-flex;
+    align-items:baseline;
+    gap:4px;
+    background:rgba(0,123,255,.12);
+    border:1px solid rgba(0,123,255,.3);
+    padding:12px 28px;
+    border-radius:14px;
+    margin-bottom:18px;
+}
+
+.payment-rupee{
+    font-size:22px;
+    font-weight:bold;
+    color:#66b3ff;
+}
+
+.payment-number{
+    font-size:38px;
+    font-weight:bold;
+    color:#fff;
+    line-height:1;
+}
+
+.payment-label{
+    font-size:12px;
+    color:#8993a4;
+    margin-bottom:12px;
+}
+
+.qr-box{
+    width:200px;
+    height:200px;
+    max-width:65vw;
+    max-height:65vw;
+
+    margin:12px auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#fff;
+    border-radius:15px;
+
+    color:#111;
+    font-weight:bold;
+    overflow:hidden;
+}
+
+.qr-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:12px;
+    display:block;
+}
+
+.upi{
+    display:inline-block;
+    padding:10px 15px;
+
+    background:rgba(0,0,0,.25);
+    border-radius:8px;
+
+    color:#fff;
+    font-size:14px;
+    margin:5px 0 15px;
+
+    word-break:break-all;
+}
+
+.payment-note{
+    font-size:11px;
+    color:#8993a4;
+    line-height:1.5;
+}
+
+.status-wrapper{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:10px;
+    margin-bottom:20px;
+    padding:16px 20px;
+    border-radius:12px;
+
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.1);
+
+    transition:.4s;
+}
+
+.status-wrapper.valid{
+    background:rgba(0,200,100,.08);
+    border-color:rgba(0,200,100,.35);
+}
+
+.status-wrapper.pending{
+    background:rgba(255,170,0,.06);
+    border-color:rgba(255,170,0,.25);
+}
+
+.status-dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    flex-shrink:0;
+    transition:.4s;
+}
+
+.status-dot.valid{
+    background:#00c864;
+    box-shadow:0 0 10px rgba(0,200,100,.6);
+    animation:pulseGreen 1.5s infinite;
+}
+
+.status-dot.pending{
+    background:#ffaa00;
+    box-shadow:0 0 8px rgba(255,170,0,.4);
+    animation:pulseYellow 1.5s infinite;
+}
+
+@keyframes pulseGreen{
+    0%,100%{ box-shadow:0 0 6px rgba(0,200,100,.4); }
+    50%{ box-shadow:0 0 18px rgba(0,200,100,.8); }
+}
+
+@keyframes pulseYellow{
+    0%,100%{ box-shadow:0 0 4px rgba(255,170,0,.3); }
+    50%{ box-shadow:0 0 14px rgba(255,170,0,.6); }
+}
+
+.status-text{
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+.status-text.valid{
+    color:#00c864;
+}
+
+.status-text.pending{
+    color:#ffaa00;
+}
+
+.status-hint{
+    font-size:11px;
+    color:#8993a4;
+    margin-top:3px;
+    font-weight:normal;
+    letter-spacing:0;
+}
+
+.submit-btn{
+    position:relative;
+    overflow:hidden;
+
+    width:100%;
+    padding:16px;
+    margin-top:10px;
+
+    border:none;
+    border-radius:11px;
+
+    background:linear-gradient(
+        90deg,
+        #007bff,
+        #7b2cff
+    );
+
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 35px rgba(0,123,255,.35);
+}
+
+.submit-btn:active{
+    transform:scale(.98);
+}
+
+.submit-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none !important;
+    box-shadow:none !important;
+}
+
+.modal-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background:rgba(6,9,18,.85);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s;
+}
+
+.modal-overlay.show{
+    opacity:1;
+    pointer-events:all;
+}
+
+.modal-box{
+    background:rgba(15,20,35,.95);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+
+    padding:40px 30px;
+    max-width:380px;
+    width:100%;
+    text-align:center;
+
+    transform:scale(.85) translateY(20px);
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+.modal-overlay.show .modal-box{
+    transform:scale(1) translateY(0);
+}
+
+.modal-icon{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+
+    background:rgba(0,200,100,.12);
+    border:2px solid rgba(0,200,100,.4);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:0 auto 20px;
+
+    font-size:32px;
+
+    animation:modalPop .5s .2s both;
+}
+
+@keyframes modalPop{
+    from{ transform:scale(0); }
+    to{ transform:scale(1); }
+}
+
+.modal-title{
+    font-size:20px;
+    font-weight:bold;
+    color:#fff;
+    margin-bottom:10px;
+}
+
+.modal-msg{
+    font-size:13px;
+    color:#8993a4;
+    line-height:1.6;
+    margin-bottom:24px;
+}
+
+.modal-btn{
+    display:inline-block;
+    padding:12px 40px;
+    border:none;
+    border-radius:10px;
+
+    background:linear-gradient(90deg,#007bff,#7b2cff);
+    color:#fff;
+    font-size:14px;
+    font-weight:bold;
+    letter-spacing:1px;
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+.modal-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(0,123,255,.35);
+}
+
+.modal-icon.error{
+    background:rgba(255,60,60,.12);
+    border-color:rgba(255,60,60,.4);
+}
+
+.modal-btn.error{
+    background:linear-gradient(90deg,#ff3c3c,#cc2200);
+}
+
+.footer{
+    text-align:center;
+    margin-top:22px;
+    color:#717c8d;
+    font-size:11px;
+}
+
+.footer span{
+    color:#66b3ff;
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:12px 8px;
+    }
+
+    .container{
+        padding:22px 14px;
+        border-radius:18px;
+    }
+
+    .row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    h1{
+        letter-spacing:3px;
+    }
+
+    .college-name{
+        font-size:11px;
+        letter-spacing:2.5px;
+    }
+
+    .subtitle{
+        font-size:13px;
+    }
+
+    .tag{
+        font-size:10px;
+        padding:6px 12px;
+    }
+
+    .section-title{
+        font-size:12px;
+        margin:24px 0 16px;
+    }
+
+    label{
+        font-size:12px;
+    }
+
+    input,
+    select,
+    textarea{
+        padding:12px;
+        font-size:13px;
+        border-radius:8px;
+    }
+
+    .member-card{
+        padding:12px;
+        margin-bottom:10px;
+    }
+
+    .member-number{
+        font-size:11px;
+    }
+
+    .payment-box{
+        padding:18px 12px;
+    }
+
+    .payment-amount-box{
+        padding:10px 22px;
+    }
+
+    .payment-number{
+        font-size:30px;
+    }
+
+    .payment-rupee{
+        font-size:18px;
+    }
+
+    .qr-box{
+        width:160px;
+        height:160px;
+        max-width:55vw;
+        max-height:55vw;
+        margin:10px auto;
+        border-radius:12px;
+    }
+
+    .qr-box img{
+        border-radius:10px;
+    }
+
+    .upi{
+        font-size:12px;
+        padding:8px 12px;
+    }
+
+    .payment-note{
+        font-size:10px;
+    }
+
+    .status-wrapper{
+        padding:12px 14px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+
+    .submit-btn{
+        padding:14px;
+        font-size:14px;
+    }
+
+    .modal-box{
+        padding:30px 20px;
+    }
+
+    .modal-icon{
+        width:60px;
+        height:60px;
+        font-size:28px;
+    }
+
+    .modal-title{
+        font-size:18px;
+    }
+
+    .modal-msg{
+        font-size:12px;
+    }
+
+    .modal-btn{
+        padding:11px 32px;
+        font-size:13px;
+    }
+
+    .footer{
+        font-size:10px;
+    }
+}
+
+@media(max-width:380px){
+
+    .container{
+        padding:18px 10px;
+    }
+
+    .qr-box{
+        width:140px;
+        height:140px;
+        max-width:50vw;
+        max-height:50vw;
+    }
+
+    .payment-number{
+        font-size:26px;
+    }
+
+    .upi{
+        font-size:11px;
+    }
+
+    .payment-amount-box{
+        padding:8px 18px;
+    }
+}
+.fa-house {
+    font-size: 24px;
+    color: #333;
+}
+</style>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+}
+</script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<i class="fa-solid fa-house"></i>
+
+</head>
+
+<body>
+
+<canvas id="three-bg"></canvas>
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+        <div class="modal-icon">✓</div>
+        <div class="modal-title">Registration Successful!</div>
+        <div class="modal-msg">Thanks for registering for ZEENITH Hackathon. We will contact you soon with further details.</div>
+        <button class="modal-btn" onclick="closeModal()">GOT IT</button>
+    </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal-overlay" id="errorModal">
+    <div class="modal-box">
+        <div class="modal-icon error">✕</div>
+        <div class="modal-title">Submission Failed</div>
+        <div class="modal-msg" id="errorMsg">Something went wrong. Please try again.</div>
+        <button class="modal-btn error" onclick="closeErrorModal()">TRY AGAIN</button>
+    </div>
+</div>
+
+<!-- HIDDEN IFRAME — this is where the form actually submits -->
+<iframe name="hiddenFrame" style="display:none;" id="hiddenFrame"></iframe>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="college-name">
+            SATHAYE COLLEGE PRESENTS
+        </div>
+
+        <h1>ZENITH</h1>
+         <h1><a href="index1.html"><i class="fa-solid fa-house"></i></a></h1>
+
+        <p class="subtitle">
+            Hack. Build. Innovate.<br>
+            Turn your ideas into reality.
+        </p>
+
+        <div class="tag">
+           
+            🚀 HACKATHON REGISTRATION
+        </div>
+
+    </div>
+
+
+    <!-- target="hiddenFrame" sends submit to the hidden iframe instead of navigating away -->
+    <form method="POST" name="google-sheet" id="regForm" target="hiddenFrame">
+
+
+        <!-- TEAM DETAILS -->
+
+        <div class="section-title">
+            Team Information
+        </div>
+
+        <div class="form-group">
+            <label for="team">Team Name</label>
+            <input type="text" id="team" name="team" placeholder="Enter your team name" required>
+        </div>
+
+
+        <!-- TEAM LEADER -->
+
+        <div class="section-title">
+            Team Leader
+        </div>
+
+        <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter team leader name" required>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="leader@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Mobile Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="form-group">
+                <label for="college">College Name</label>
+                <input type="text" id="college" name="college" placeholder="Enter college name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Course</label>
+                <select id="course" name="course" required>
+                    <option value="">Select Course</option>
+                    <option value="BSc IT">BSc IT</option>
+                    <option value="BSc CS">BSc CS</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BCom">BCom</option>
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="year">Academic Year</label>
+            <select id="year" name="year" required>
+                <option value="">Select Year</option>
+                <option value="FY">FY - First Year</option>
+                <option value="SY">SY - Second Year</option>
+                <option value="TY">TY - Third Year</option>
+                <option value="TY">(B.Tech - 4th Year)</option>
+
+            </select>
+        </div>
+
+        <!-- <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="Enter team leader address"></textarea>
+        </div> -->
+
+
+        <!-- TEAM MEMBERS -->
+
+        <div class="section-title">
+            Team Members
+        </div>
+
+        <p style="font-size:11px;color:#8993a4;margin-bottom:15px;">
+            Enter only the names of your team members.
+        </p>
+
+        <div class="member-card">
+            <div class="member-number">MEMBER 01</div>
+            <input type="text" name="member1" placeholder="Member 1 name (Leader)">
+        </div>
+
+        <div class="member-card">
+            <div class="member-number">MEMBER 02</div>
+            <input type="text" name="member2" placeholder="Member 2 name">
+        </div>
+
+        <div class="member-card">
+            <div class="member-number">MEMBER 03</div>
+            <input type="text" name="member3" placeholder="Member 3 name">
+        </div>
+
+        <div class="member-card">
+            <div class="member-number">MEMBER 04</div>
+            <input type="text" name="member4" placeholder="Member 4 name">
+        </div>
+
+
+        <!-- SKILLS -->
+
+        <div class="section-title">
+            Hackathon Details
+        </div>
+
+        <div class="form-group">
+            <label for="skills">Team Technical Skills</label>
+            <input type="text" id="skills" name="skills" placeholder="Python, Java, React, AI, Web Development...">
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="section-title">
+            Payment
+        </div>
+
+        <div class="payment-box">
+
+            <div class="payment-label">REGISTRATION FEE</div>
+
+            <div class="payment-amount-box">
+                <span class="payment-rupee">₹</span>
+                <span class="payment-number">400</span>
+            </div>
+
+            <p style="color:#aeb8c8;font-size:13px;margin-bottom:5px;">
+                Pay using the QR code below.
+            </p>
+
+            <div class="qr-box">
+                <img src="zeenith1-qr.png" alt="ZEENITH Hackathon Payment QR Code">
+            </div>
+
+            <div class="upi">
+                UPI ID: <strong>yourupi@upi</strong>
+            </div>
+
+            <p class="payment-note">
+                Scan the QR code or use the UPI ID to complete payment.
+                After payment, enter your transaction ID below.
+            </p>
+
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label for="transaction"> Transaction ID / UTR Number</label>
+            <input type="text" id="transaction" name="transaction" placeholder="Enter your payment transaction ID" required>
+        </div>
+
+        <!-- Hidden fields -->
+        <input type="hidden" name="amount" id="amountField" value="200">
+        <input type="hidden" name="status" id="statusField" value="Pending">
+
+        <!-- Visible status badge -->
+         <div class="status-wrapper pending" id="statusBadge">
+            <div class="status-dot pending" id="statusDot"></div>
+            <div>
+                <div class="status-text pending" id="statusLabel">PAYMENT STATUS: PENDING</div>
+                <div class="status-hint" id="statusHint">Enter your UPI Transaction ID to verify payment</div>
+            </div>
+        </div>
+
+
+        <!-- SUBMIT -->
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+            🚀 SUBMIT ZEENITH REGISTRATION
+            
+        </button>
+
+
+    </form>
+
+
+    <div class="footer">
+        
+        © 2026 <span>ZEENITH Hackathon</span>
+        · Sathaye College
+    </div>
+     <div class="footer">
+        
+        <h1><a href="index1.html"><i class="fa-solid fa-house"></i></a></h1>
+        <h2>GO BACK TO Home</h2>
+    </div>
+
+</div>
+
+
+<!-- IFRAME SUBMIT — no fetch, no CORS, works every time -->
+<script>
+var scriptURL = 'https://script.google.com/macros/s/AKfycbxZ47Nu8Kix1R9OrNEHRXqiz7tt3spEEvJXN0V4TFRyAnPl4yUlroDx3GTGkjxyzDDoCQ/exec'
+var form = document.forms['google-sheet']
+var submitBtn = document.getElementById('submitBtn')
+var hiddenFrame = document.getElementById('hiddenFrame')
+
+/* Set form action to the script URL */
+form.action = scriptURL
+
+/* When iframe finishes loading = form submission complete */
+hiddenFrame.onload = function() {
+    submitBtn.disabled = false;
+    submitBtn.textContent = '🚀 SUBMIT ZEENITH REGISTRATION';
+
+    /* Show success modal */
+    document.getElementById('successModal').classList.add('show');
+
+    /* Reset form */
+    form.reset();
+    document.getElementById('amountField').value = '200';
+    document.getElementById('statusField').value = 'Pending';
+    document.getElementById('statusBadge').className = 'status-wrapper pending';
+    document.getElementById('statusDot').className = 'status-dot pending';
+    document.getElementById('statusLabel').className = 'status-text pending';
+    document.getElementById('statusLabel').textContent = 'PAYMENT STATUS: PENDING';
+    document.getElementById('statusHint').textContent = 'Enter your UPI Transaction ID to verify payment';
+}
+
+/* Disable button while submitting */
+form.addEventListener('submit', function() {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'SUBMITTING...';
+})
+
+function closeModal() {
+    document.getElementById('successModal').classList.remove('show');
+}
+
+function closeErrorModal() {
+    document.getElementById('errorModal').classList.remove('show');
+}
+
+document.getElementById('successModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+document.getElementById('errorModal').addEventListener('click', function(e) {
+    if (e.target === this) closeErrorModal();
+});
+</script>
+
+
+<!-- Status auto-validator — only checks transaction ID -->
+<script>
+(function(){
+    var txInput      = document.getElementById('transaction');
+    var statusField  = document.getElementById('statusField');
+    var statusBadge  = document.getElementById('statusBadge');
+    var statusDot    = document.getElementById('statusDot');
+    var statusLabel  = document.getElementById('statusLabel');
+    var statusHint   = document.getElementById('statusHint');
+
+    function validatePayment(){
+        var hasTx = txInput.value.trim().length > 0;
+
+        if(hasTx){
+            statusField.value = 'Valid';
+            statusBadge.className = 'status-wrapper valid';
+            statusDot.className   = 'status-dot valid';
+            statusLabel.className = 'status-text valid';
+            statusLabel.textContent = 'PAYMENT STATUS: VALID';
+            statusHint.textContent  = 'Transaction ID found — payment verified';
+        } else {
+            statusField.value = 'Pending';
+            statusBadge.className = 'status-wrapper pending';
+            statusDot.className   = 'status-dot pending';
+            statusLabel.className = 'status-text pending';
+            statusLabel.textContent = 'PAYMENT STATUS: PENDING';
+            statusHint.textContent = 'Enter your UPI Transaction ID to verify payment';
+        }
+    }
+
+    txInput.addEventListener('input', validatePayment);
+    validatePayment();
+})();
+</script>
+
+<!-- Three.js animated background -->
+<script type="module">
+import * as THREE from 'three';
+
+const canvas = document.getElementById('three-bg');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x060912);
+scene.fog = new THREE.FogExp2(0x060912, 0.025);
+
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+camera.position.set(0, 0, 30);
+
+const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+window.addEventListener('mousemove', e => {
+    mouse.tx = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouse.ty = -(e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+const PARTICLE_COUNT = 1200;
+const pGeo = new THREE.BufferGeometry();
+const pPos = new Float32Array(PARTICLE_COUNT * 3);
+const pSizes = new Float32Array(PARTICLE_COUNT);
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+    pPos[i * 3]     = (Math.random() - 0.5) * 100;
+    pPos[i * 3 + 1] = (Math.random() - 0.5) * 80;
+    pPos[i * 3 + 2] = (Math.random() - 0.5) * 60 - 10;
+    pSizes[i] = Math.random() * 2.5 + 0.5;
+}
+
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+pGeo.setAttribute('size', new THREE.BufferAttribute(pSizes, 1));
+
+const pMat = new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    uniforms: {
+        uTime: { value: 0 },
+        uColor1: { value: new THREE.Color(0x007bff) },
+        uColor2: { value: new THREE.Color(0x8a2be2) }
+    },
+    vertexShader: `
+        attribute float size;
+        varying float vDist;
+        varying float vMix;
+        uniform float uTime;
+        void main(){
+            vec3 pos = position;
+            pos.y += sin(uTime * 0.3 + position.x * 0.1) * 0.5;
+            pos.x += cos(uTime * 0.2 + position.z * 0.1) * 0.4;
+            vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+            gl_PointSize = size * (80.0 / -mv.z);
+            gl_Position = projectionMatrix * mv;
+            vDist = clamp(-mv.z / 50.0, 0.0, 1.0);
+            vMix = sin(position.x * 0.05 + uTime * 0.4) * 0.5 + 0.5;
+        }
+    `,
+    fragmentShader: `
+        uniform vec3 uColor1;
+        uniform vec3 uColor2;
+        varying float vDist;
+        varying float vMix;
+        void main(){
+            float d = length(gl_PointCoord - 0.5);
+            if(d > 0.5) discard;
+            float alpha = smoothstep(0.5, 0.0, d) * (1.0 - vDist) * 0.7;
+            vec3 col = mix(uColor1, uColor2, vMix);
+            gl_FragColor = vec4(col, alpha);
+        }
+    `
+});
+
+const particles = new THREE.Points(pGeo, pMat);
+scene.add(particles);
+
+const shapes = [];
+
+function createShape(geometry, color, pos, rotSpeed, floatAmp, floatFreq) {
+    const mat = new THREE.MeshBasicMaterial({
+        color, wireframe: true, transparent: true, opacity: 0.15
+    });
+    const mesh = new THREE.Mesh(geometry, mat);
+    mesh.position.set(pos.x, pos.y, pos.z);
+    mesh.userData = { rotSpeed, floatAmp, floatFreq, baseY: pos.y, phase: Math.random() * Math.PI * 2 };
+    scene.add(mesh);
+    shapes.push(mesh);
+}
+
+createShape(new THREE.IcosahedronGeometry(6, 1), 0x007bff, { x: -18, y: 4, z: -20 }, { x: 0.003, y: 0.005, z: 0.002 }, 2.5, 0.4);
+createShape(new THREE.TorusKnotGeometry(3, 0.8, 80, 12, 2, 3), 0x8a2be2, { x: 20, y: -3, z: -15 }, { x: 0.004, y: 0.003, z: 0.001 }, 2, 0.3);
+createShape(new THREE.OctahedronGeometry(4, 0), 0x00c6ff, { x: -12, y: -10, z: -8 }, { x: 0.006, y: 0.004, z: 0.005 }, 1.8, 0.5);
+createShape(new THREE.DodecahedronGeometry(3.5, 0), 0xb866ff, { x: 15, y: 10, z: -25 }, { x: 0.002, y: 0.007, z: 0.003 }, 3, 0.25);
+createShape(new THREE.TorusGeometry(2.5, 0.6, 16, 40), 0x4da6ff, { x: 0, y: -14, z: -18 }, { x: 0.005, y: 0.002, z: 0.006 }, 1.5, 0.35);
+createShape(new THREE.IcosahedronGeometry(2, 0), 0x66b3ff, { x: 22, y: 5, z: -30 }, { x: 0.008, y: 0.006, z: 0.004 }, 2.2, 0.45);
+createShape(new THREE.RingGeometry(3, 4.5, 6), 0x9955ff, { x: -22, y: -6, z: -22 }, { x: 0.003, y: 0.008, z: 0.002 }, 1.6, 0.3);
+
+const LINE_COUNT = 120;
+const linePositions = new Float32Array(LINE_COUNT * 6);
+const lineGeo = new THREE.BufferGeometry();
+lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+const lineMat = new THREE.LineBasicMaterial({ color: 0x007bff, transparent: true, opacity: 0.06, blending: THREE.AdditiveBlending });
+const lines = new THREE.LineSegments(lineGeo, lineMat);
+scene.add(lines);
+
+function updateLines() {
+    const pos = pGeo.attributes.position.array;
+    let idx = 0;
+    const maxDist = 8;
+    for (let i = 0; i < PARTICLE_COUNT && idx < LINE_COUNT; i += 5) {
+        for (let j = i + 5; j < PARTICLE_COUNT && idx < LINE_COUNT; j += 7) {
+            const dx = pos[i*3] - pos[j*3];
+            const dy = pos[i*3+1] - pos[j*3+1];
+            const dz = pos[i*3+2] - pos[j*3+2];
+            if (dx*dx + dy*dy + dz*dz < maxDist * maxDist) {
+                const k = idx * 6;
+                linePositions[k] = pos[i*3]; linePositions[k+1] = pos[i*3+1]; linePositions[k+2] = pos[i*3+2];
+                linePositions[k+3] = pos[j*3]; linePositions[k+4] = pos[j*3+1]; linePositions[k+5] = pos[j*3+2];
+                idx++;
+            }
+        }
+    }
+    for (let i = idx * 6; i < LINE_COUNT * 6; i++) linePositions[i] = 0;
+    lineGeo.attributes.position.needsUpdate = true;
+}
+
+function createGlow(color, position, scale) {
+    const geo = new THREE.SphereGeometry(1, 16, 16);
+    const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.04, blending: THREE.AdditiveBlending, depthWrite: false });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.copy(position);
+    mesh.scale.set(scale, scale, scale);
+    scene.add(mesh);
+    return mesh;
+}
+
+const glow1 = createGlow(0x007bff, new THREE.Vector3(-15, 8, -20), 12);
+const glow2 = createGlow(0x8a2be2, new THREE.Vector3(18, -5, -15), 14);
+const glow3 = createGlow(0x00c6ff, new THREE.Vector3(0, -12, -25), 10);
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+const clock = new THREE.Clock();
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function animate() {
+    if (!reduceMotion) requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    mouse.x += (mouse.tx - mouse.x) * 0.03;
+    mouse.y += (mouse.ty - mouse.y) * 0.03;
+    camera.position.x = mouse.x * 3;
+    camera.position.y = mouse.y * 2;
+    camera.lookAt(0, 0, -5);
+
+    pMat.uniforms.uTime.value = t;
+    particles.rotation.y = t * 0.015;
+    particles.rotation.x = Math.sin(t * 0.01) * 0.1;
+
+    for (const s of shapes) {
+        const d = s.userData;
+        s.rotation.x += d.rotSpeed.x;
+        s.rotation.y += d.rotSpeed.y;
+        s.rotation.z += d.rotSpeed.z;
+        s.position.y = d.baseY + Math.sin(t * d.floatFreq + d.phase) * d.floatAmp;
+    }
+
+    glow1.position.y = 8 + Math.sin(t * 0.2) * 3;
+    glow1.position.x = -15 + Math.cos(t * 0.15) * 2;
+    glow2.position.y = -5 + Math.sin(t * 0.18 + 1) * 3;
+    glow2.position.x = 18 + Math.cos(t * 0.12 + 2) * 2;
+    glow3.position.y = -12 + Math.sin(t * 0.22 + 3) * 2.5;
+
+    if (Math.floor(t * 10) % 3 === 0) updateLines();
+
+    renderer.render(scene, camera);
+}
+
+animate();
+</script>
+
+</body>
+</html>
