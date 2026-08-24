@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Location Verification</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Sathaye College DC Discipline Duty</h2>
+
+    <p>Click below to verify your location.</p>
+
+    <button onclick="checkLocation()">
+        Verify Location
+    </button>
+
+    <p id="status"></p>
+
+    <script>
+
+        // const allowedLat = 21.2350263;
+        // const allowedLon = 72.818565;
+
+        const allowedLat = 19.121896;
+        const allowedLon = 72.854638;
+        const radius = 100;
+
+        const googleForm =
+            "https://forms.gle/DjAQpUbUgoaUxpVS6";
+
+        function distance(lat1, lon1, lat2, lon2) {
+
+            const R = 6371000;
+
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+
+            const a =
+                Math.sin(dLat / 2) ** 2 +
+                Math.cos(lat1 * Math.PI / 180) *
+                Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) ** 2;
+
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            return R * c;
+
+        }
+
+        function checkLocation() {
+
+            navigator.geolocation.getCurrentPosition(
+
+                function (position) {
+
+                    const userLat = position.coords.latitude;
+                    const userLon = position.coords.longitude;
+
+                    const d = distance(userLat, userLon, allowedLat, allowedLon);
+
+                    if (d <= radius) {
+
+                        document.getElementById("status").innerHTML = "Verified! Redirecting...";
+
+                        window.location.href = googleForm;
+
+                    }
+                    else {
+
+                        document.getElementById("status").innerHTML = "Access denied. You are outside campus.";
+
+                    }
+
+                },
+
+                function () {
+
+                    document.getElementById("status").innerHTML = "Please enable location.";
+
+                }
+
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
