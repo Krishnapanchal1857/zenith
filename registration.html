@@ -962,10 +962,14 @@ textarea{
 
         <!-- PAYMENT -->
 
+     <!-- PAYMENT -->
+
         <div class="section-title">
             Payment
         </div>
 
+        
+ 
         <div class="payment-box">
 
             <div class="payment-label">REGISTRATION FEE</div>
@@ -976,43 +980,55 @@ textarea{
             </div>
 
             <p style="color:#aeb8c8;font-size:13px;margin-bottom:5px;">
-                Pay using the QR code below.
+                Pay using the Payment Link below.
             </p>
+            <br>
 
-            <div class="qr-box">
-                <img src="scanner.jpeg" alt="ZENITH Hackathon Payment QR Code">
-            </div>
 
-            <div class="upi">
+            <!-- <div class="qr-box">
+                <img src="zeenith1-qr.png" alt="ZEENITH Hackathon Payment QR Code">
+            </div> -->
+
+            <!-- <div class="upi">
                 UPI ID: <strong>yourupi@upi</strong>
-            </div>
+            </div> -->
 
-            <p class="payment-note">
-                Scan the QR code or use the UPI ID to complete payment.
-                After payment, enter your transaction ID below.
-            </p>
+            
+          <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TTt240AOnz8UGM" async> </script> </form>
 
-        </div>
+           
 
-        <br>
+        </div> 
+
+         <br>
 
         <div class="form-group">
             <label for="transaction"> Transaction ID / UTR Number</label>
             <input type="text" id="transaction" name="transaction" placeholder="Enter your payment transaction ID" required>
-        </div>
+        </div> 
 
         <!-- Hidden fields -->
         <input type="hidden" name="amount" id="amountField" value="200">
         <input type="hidden" name="status" id="statusField" value="Pending">
 
         <!-- Visible status badge -->
-         <!-- <div class="status-wrapper pending" id="statusBadge">
+         <div class="status-wrapper pending" id="statusBadge">
             <div class="status-dot pending" id="statusDot"></div>
             <div>
                 <div class="status-text pending" id="statusLabel">PAYMENT STATUS: PENDING</div>
                 <div class="status-hint" id="statusHint">Enter your UPI Transaction ID to verify payment</div>
             </div>
-        </div> -->
+        </div>
+
+    
+
+        <!-- SUBMIT -->
+
+         <button type="submit" class="submit-btn" id="submitBtn">
+             SUBMIT ZENITH REGISTRATION
+            
+        </button>
+
 
 
         <!-- SUBMIT -->
