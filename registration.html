@@ -1003,7 +1003,10 @@ textarea{
 
         <div class="form-group">
             <label for="transaction"> Transaction ID / UTR Number</label>
-            <input type="text" id="transaction" name="transaction" placeholder="Enter your payment transaction ID" required>
+            <input type="text" id="transaction" name="transaction" placeholder="Enter your payment transaction ID" required
+                <input type="text" name="utr" inputmode="numeric" pattern="[0-9]{12}" minlength="12" maxlength="12"
+                    required placeholder="Enter 12-digit UTR number" />
+            
         </div> 
 
         <!-- Hidden fields -->
