@@ -1,0 +1,722 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Location Verification</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #status {
+            margin-top: 25px;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <h2>Sathaye College DC Discipline Duty</h2>
+
+    <p>
+        Click below to verify your location.
+    </p>
+
+
+    <button onclick="checkLocation()">
+        Verify Location
+    </button>
+
+
+    <p id="status"></p>
+
+
+    <script>
+
+
+        // ==========================================
+        // 4 ALLOWED LOCATIONS
+        // ==========================================
+
+        const locations = [
+
+            {
+                name: "IT - DEPARTMENT",
+                // lat: 19.121896,
+                // lon: 72.854638
+            },
+
+            {
+                name: "BMM - DEPARTMENT",
+                // 19.099149,72.850878
+                // lat: 19.099149,
+                // lon: 72.850878
+            },
+
+            {
+                name: "BMS - DEPARTMENT",
+                // 19.099518,72.850129
+                // lat: 19.123000,
+                // lon: 72.856000
+            },
+
+            {
+                name: "EXAMINATION - DEPARTMENT",
+                //  19.099065,72.849908
+                lat: 19.123500,
+                lon: 72.857000
+            }
+
+        ];
+
+
+        // ==========================================
+        // RADIUS
+        // ==========================================
+
+        const radius = 1000;
+
+
+        // ==========================================
+        // GOOGLE FORM
+        // ==========================================
+
+        const googleForm =
+            "https://forms.gle/DjAQpUbUgoaUxpVS6";
+
+
+        // ==========================================
+        // DISTANCE FUNCTION
+        // ==========================================
+
+        function distance(lat1, lon1, lat2, lon2) {
+
+            const R = 6371000;
+
+
+            const dLat =
+                (lat2 - lat1) * Math.PI / 180;
+
+
+            const dLon =
+                (lon2 - lon1) * Math.PI / 180;
+
+
+            const a =
+                Math.sin(dLat / 2) ** 2 +
+
+                Math.cos(lat1 * Math.PI / 180) *
+
+                Math.cos(lat2 * Math.PI / 180) *
+
+                Math.sin(dLon / 2) ** 2;
+
+
+            const c =
+                2 * Math.atan2(
+                    Math.sqrt(a),
+                    Math.sqrt(1 - a)
+                );
+
+
+            return R * c;
+
+        }
+
+
+        // ==========================================
+        // CHECK LOCATION
+        // ==========================================
+
+        function checkLocation() {
+
+
+            const status =
+                document.getElementById("status");
+
+
+            status.innerHTML =
+                "📍 Checking your location...";
+
+
+            // Check browser support
+
+            if (!navigator.geolocation) {
+
+                status.innerHTML =
+                    "❌ Your browser does not support location.";
+
+                return;
+
+            }
+
+
+            // Get user's location
+
+            navigator.geolocation.getCurrentPosition(
+
+                function(position) {
+
+
+                    // ==================================
+                    // USER LOCATION
+                    // ==================================
+
+                    const userLat =
+                        position.coords.latitude;
+
+
+                    const userLon =
+                        position.coords.longitude;
+
+
+                    const accuracy =
+                        position.coords.accuracy;
+
+
+                    console.log(
+                        "User Latitude:",
+                        userLat
+                    );
+
+
+                    console.log(
+                        "User Longitude:",
+                        userLon
+                    );
+
+
+                    console.log(
+                        "GPS Accuracy:",
+                        accuracy
+                    );
+
+
+                    // ==================================
+                    // CHECK ALL 4 LOCATIONS
+                    // ==================================
+
+                    let verified = false;
+
+                    let verifiedLocation = "";
+
+                    let nearestDistance = Infinity;
+
+
+                    for (let location of locations) {
+
+
+                        const d =
+                            distance(
+                                userLat,
+                                userLon,
+                                location.lat,
+                                location.lon
+                            );
+
+
+                        console.log(
+                            location.name +
+                            " Distance:",
+                            Math.round(d) +
+                            " meters"
+                        );
+
+
+                        // Find nearest location
+
+                        if (d < nearestDistance) {
+
+                            nearestDistance = d;
+
+                        }
+
+
+                        // Check allowed radius
+
+                        if (d <= radius) {
+
+                            verified = true;
+
+                            verifiedLocation =
+                                location.name;
+
+                            break;
+
+                        }
+
+                    }
+
+
+                    // ==================================
+                    // VERIFIED
+                    // ==================================
+
+                    if (verified) {
+
+
+                        status.innerHTML =
+                            "✅ Location Verified!<br>" +
+
+                            "Location: " +
+                            verifiedLocation +
+                            "<br>" +
+
+                            "Opening Form...";
+
+
+                        console.log(
+                            "Verified at:",
+                            verifiedLocation
+                        );
+
+
+                        // Open Google Form
+
+                        setTimeout(function() {
+
+                            window.location.href =
+                                googleForm;
+
+                        }, 1000);
+
+
+                    }
+
+
+                    // ==================================
+                    // ACCESS DENIED
+                    // ==================================
+
+                    else {
+
+
+                        status.innerHTML =
+                            "❌ Access Denied!<br><br>" +
+
+                            "You are outside the allowed locations.<br>" +
+
+                            "Nearest distance: " +
+                            Math.round(nearestDistance) +
+                            " meters";
+
+
+                    }
+
+                },
+
+
+                // ======================================
+                // LOCATION ERROR
+                // ======================================
+
+                function(error) {
+
+
+                    if (error.code === 1) {
+
+                        status.innerHTML =
+                            "❌ Location permission denied.<br>" +
+                            "Please allow location access.";
+
+                    }
+
+
+                    else if (error.code === 2) {
+
+                        status.innerHTML =
+                            "❌ Location unavailable.<br>" +
+                            "Please turn on GPS.";
+
+                    }
+
+
+                    else if (error.code === 3) {
+
+                        status.innerHTML =
+                            "❌ Location request timed out.<br>" +
+                            "Please try again.";
+
+                    }
+
+
+                    else {
+
+                        status.innerHTML =
+                            "❌ Unable to get your location.";
+
+                    }
+
+                },
+
+
+                // ======================================
+                // GPS SETTINGS
+                // ======================================
+
+                {
+
+                    enableHighAccuracy: true,
+
+                    timeout: 15000,
+
+                    maximumAge: 0
+
+                }
+
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Location Verification</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #status {
+            margin-top: 25px;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Sathaye College DC Discipline Duty</h2>
+
+    <p>
+        You must be at an authorized location to access the form.
+    </p>
+
+    <button onclick="checkLocation()">
+        Verify Location
+    </button>
+
+    <p id="status"></p>
+
+
+    <script>
+
+        // ==========================================
+        // 4 AUTHORIZED LOCATIONS
+        // ==========================================
+
+        const locations = [
+
+            {
+
+        //         19.099286;
+        //          72.850395;
+                name: "IT - DEPARTMENT",
+                lat: 19.099286,
+                lon: 72.850395
+            },
+
+            {
+                name: "BMM - DEPARTMENT",
+                lat: 19.099149,
+                lon: 72.850878
+            },
+
+            {
+                name: "BMS - DEPARTMENT",
+                lat: 19.099518,
+                lon: 72.850129
+            },
+
+            {
+                name: "EXAMINATION - DEPARTMENT",
+                lat: 19.099065,
+                lon: 72.849908
+            }
+
+        ];
+
+
+        // ==========================================
+        // ALLOWED RADIUS
+        // ==========================================
+
+        const radius = 30;
+
+
+        // ==========================================
+        // GOOGLE FORM
+        // ==========================================
+
+        const googleForm =
+            "https://forms.gle/DjAQpUbUgoaUxpVS6";
+
+
+        // ==========================================
+        // DISTANCE CALCULATION
+        // ==========================================
+
+        function distance(lat1, lon1, lat2, lon2) {
+
+            const R = 6371000;
+
+            const dLat =
+                (lat2 - lat1) * Math.PI / 180;
+
+            const dLon =
+                (lon2 - lon1) * Math.PI / 180;
+
+            const a =
+                Math.sin(dLat / 2) ** 2 +
+
+                Math.cos(lat1 * Math.PI / 180) *
+                Math.cos(lat2 * Math.PI / 180) *
+
+                Math.sin(dLon / 2) ** 2;
+
+            const c =
+                2 * Math.atan2(
+                    Math.sqrt(a),
+                    Math.sqrt(1 - a)
+                );
+
+            return R * c;
+        }
+
+
+        // ==========================================
+        // VERIFY LOCATION
+        // ==========================================
+
+        function checkLocation() {
+
+            const status =
+                document.getElementById("status");
+
+            status.innerHTML =
+                "📍 Checking your location...";
+
+
+            if (!navigator.geolocation) {
+
+                status.innerHTML =
+                    "❌ Location is not supported by this browser.";
+
+                return;
+            }
+
+
+            navigator.geolocation.getCurrentPosition(
+
+                function(position) {
+
+                    const userLat =
+                        position.coords.latitude;
+
+                    const userLon =
+                        position.coords.longitude;
+
+                    const accuracy =
+                        position.coords.accuracy;
+
+
+                    let verified = false;
+                    let verifiedLocation = "";
+                    let nearestDistance = Infinity;
+
+
+                    // ==================================
+                    // CHECK ALL 4 LOCATIONS
+                    // ==================================
+
+                    for (const location of locations) {
+
+                        const d =
+                            distance(
+                                userLat,
+                                userLon,
+                                location.lat,
+                                location.lon
+                            );
+
+
+                        console.log(
+                            location.name +
+                            " = " +
+                            Math.round(d) +
+                            " meters"
+                        );
+
+
+                        if (d < nearestDistance) {
+
+                            nearestDistance = d;
+
+                        }
+
+
+                        if (d <= radius) {
+
+                            verified = true;
+
+                            verifiedLocation =
+                                location.name;
+
+                            break;
+                        }
+
+                    }
+
+
+                    // ==================================
+                    // VERIFIED
+                    // ==================================
+
+                    if (verified) {
+
+                        status.innerHTML =
+                            "✅ Location Verified!<br>" +
+                            "Authorized Location: " +
+                            verifiedLocation +
+                            "<br>" +
+                            "Opening Form...";
+
+
+                        setTimeout(function() {
+
+                            window.location.href =
+                                googleForm;
+
+                        }, 1000);
+
+                    }
+
+
+                    // ==================================
+                    // NOT VERIFIED
+                    // ==================================
+
+                    else {
+
+                        status.innerHTML =
+                            "❌ Access Denied!<br><br>" +
+                            "You are not at an authorized location.";
+
+                        console.log(
+                            "Nearest location: " +
+                            Math.round(nearestDistance) +
+                            " meters"
+                        );
+
+                        console.log(
+                            "GPS accuracy: " +
+                            Math.round(accuracy) +
+                            " meters"
+                        );
+                    }
+
+                },
+
+
+                // ==================================
+                // LOCATION ERROR
+                // ==================================
+
+                function(error) {
+
+                    if (error.code === 1) {
+
+                        status.innerHTML =
+                            "❌ Location permission denied.<br>" +
+                            "Please allow location access.";
+
+                    }
+
+                    else if (error.code === 2) {
+
+                        status.innerHTML =
+                            "❌ Location unavailable.<br>" +
+                            "Please turn on GPS.";
+
+                    }
+
+                    else if (error.code === 3) {
+
+                        status.innerHTML =
+                            "❌ Location request timed out.<br>" +
+                            "Please try again.";
+
+                    }
+
+                    else {
+
+                        status.innerHTML =
+                            "❌ Unable to get your location.";
+
+                    }
+
+                },
+
+
+                {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 0
+                }
+
+            );
+        }
+
+    </script>
+
+</body>
+
+</html>
