@@ -601,6 +601,126 @@ textarea{
     color:#66b3ff;
 }
 
+/* ================= HOME LINK ================= */
+
+.home-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    margin-bottom:16px;
+    padding:7px 15px;
+
+    border-radius:30px;
+    border:1px solid rgba(80,170,255,.3);
+
+    color:#66b3ff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.home-link i{
+    font-size:12px;
+}
+
+.home-link:hover{
+    background:rgba(80,170,255,.12);
+    transform:translateY(-2px);
+}
+
+/* ================= REGISTRATIONS CLOSED STATE ================= */
+
+#closedTag{
+    display:none;
+    border-color:rgba(255,80,80,.5);
+    color:#ff6b6b;
+}
+
+html.reg-closed #openTag{ display:none; }
+html.reg-closed #closedTag{ display:inline-block; }
+html.reg-closed #regForm{ display:none; }
+
+.closed-panel{
+    display:none;
+    text-align:center;
+    padding:38px 22px;
+    border-radius:18px;
+
+    background:rgba(255,60,60,.055);
+    border:1px solid rgba(255,80,80,.28);
+
+    animation:fieldIn .6s var(--ease-out) forwards;
+}
+
+html.reg-closed .closed-panel{ display:block; }
+
+.closed-icon{
+    font-size:38px;
+    line-height:1;
+    margin-bottom:16px;
+}
+
+.closed-title{
+    font-family:'Space Grotesk', Arial, sans-serif;
+    font-size:clamp(22px,5vw,30px);
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#ff6b6b;
+    margin-bottom:14px;
+}
+
+.closed-msg{
+    color:#aeb8c8;
+    font-size:14px;
+    line-height:1.7;
+    margin-bottom:18px;
+}
+
+.closed-msg strong{
+    color:#fff;
+}
+
+.closed-note{
+    font-size:12px;
+    color:#8993a4;
+    line-height:1.7;
+    margin-top:16px;
+}
+
+.closed-note a{
+    color:#66b3ff;
+    text-decoration:none;
+}
+
+.closed-home{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    margin-top:22px;
+    padding:13px 30px;
+
+    border-radius:11px;
+
+    background:linear-gradient(90deg,#007bff,#7b2cff);
+    color:#fff;
+    font-size:14px;
+    font-weight:bold;
+    letter-spacing:1px;
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.closed-home:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 35px rgba(0,123,255,.35);
+}
+
 @media(max-width:600px){
 
     body{
@@ -737,6 +857,15 @@ textarea{
     .footer{
         font-size:10px;
     }
+
+    .closed-panel{
+        padding:28px 14px;
+    }
+
+    .closed-home{
+        padding:12px 22px;
+        font-size:13px;
+    }
 }
 
 @media(max-width:380px){
@@ -764,10 +893,7 @@ textarea{
         padding:8px 18px;
     }
 }
-.fa-house {
-    font-size: 24px;
-    color: #333;
-}
+
 </style>
 
 <script type="importmap">
@@ -778,14 +904,25 @@ textarea{
     }
 }
 </script>
+
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<i class="fa-solid fa-house"></i>
 
 </head>
 
 <body>
+
+<!-- ============================================================
+     MASTER SWITCH
+     true  = registrations OPEN
+     false = registrations CLOSED
+     ============================================================ -->
+<script>
+    window.REGISTRATIONS_OPEN = false;
+    if (!window.REGISTRATIONS_OPEN) {
+        document.documentElement.classList.add('reg-closed');
+    }
+</script>
 
 <canvas id="three-bg"></canvas>
 
@@ -810,7 +947,7 @@ textarea{
 </div>
 
 <!-- HIDDEN IFRAME — this is where the form actually submits -->
-<iframe name="hiddenFrame" style="display:none;" id="hiddenFrame"></iframe>
+<iframe name="hiddenFrame" style="display:none;" id="hiddenFrame" title="hidden submit frame"></iframe>
 
 <div class="container">
 
@@ -820,25 +957,57 @@ textarea{
             SATHAYE COLLEGE PRESENTS
         </div>
 
+        <a class="home-link" href="index1.html">
+            <i class="fa-solid fa-house"></i> HOME
+        </a>
+
         <h1>ZENITH</h1>
-         <h1><a href="index1.html"><i class="fa-solid fa-house"></i></a></h1>
 
         <p class="subtitle">
             Hack. Build. Innovate.<br>
             Turn your ideas into reality.
         </p>
 
-        <div class="tag">
-           
-             HACKATHON REGISTRATION
+        <div class="tag" id="openTag">
+            HACKATHON REGISTRATION
+        </div>
+
+        <div class="tag" id="closedTag">
+            REGISTRATIONS CLOSED
         </div>
 
     </div>
 
 
+    <!-- ================= CLOSED PANEL ================= -->
+    <div class="closed-panel">
+
+        <div class="closed-icon">🔒</div>
+
+        <div class="closed-title">Registrations Are Closed</div>
+
+        <p class="closed-msg">
+            Thank you for the overwhelming response!<br>
+            Registration for <strong>ZENITH Hackathon</strong> is now <strong>closed</strong>.<br>
+            We are no longer accepting new entries.
+        </p>
+
+        <p class="closed-note">
+            Already registered? You will receive further details on your registered email.<br>
+            For any queries, contact us at
+            <a href="mailto:zenith@sathayecollege.edu">zenith@sathayecollege.edu</a>
+        </p>
+
+        <a class="closed-home" href="index1.html">
+            <i class="fa-solid fa-house"></i> BACK TO HOME
+        </a>
+
+    </div>
+    <!-- ================= /CLOSED PANEL ================= -->
+
+
     <!-- target="hiddenFrame" sends submit to the hidden iframe instead of navigating away -->
     <form method="POST" name="google-sheet" id="regForm" target="hiddenFrame">
-
 
         <!-- TEAM DETAILS -->
 
@@ -906,15 +1075,9 @@ textarea{
                 <option value="FY">FY - First Year</option>
                 <option value="SY">SY - Second Year</option>
                 <option value="TY">TY - Third Year</option>
-                <option value="TY">(B.Tech - 4th Year)</option>
-
+                <option value="BTech-4">(B.Tech - 4th Year)</option>
             </select>
         </div>
-
-        <!-- <div class="form-group">
-            <label for="address">Address</label>
-            <textarea id="address" name="address" placeholder="Enter team leader address"></textarea>
-        </div> -->
 
 
         <!-- TEAM MEMBERS -->
@@ -962,14 +1125,10 @@ textarea{
 
         <!-- PAYMENT -->
 
-     <!-- PAYMENT -->
-
         <div class="section-title">
             Payment
         </div>
 
-        
- 
         <div class="payment-box">
 
             <div class="payment-label">REGISTRATION FEE</div>
@@ -984,73 +1143,42 @@ textarea{
             </p>
             <br>
 
+            <!-- Razorpay payment button is injected here ONLY when registrations are open -->
+            <div id="razorpaySlot"></div>
 
-            <!-- <div class="qr-box">
-                <img src="zeenith1-qr.png" alt="ZEENITH Hackathon Payment QR Code">
-            </div> -->
+        </div>
 
-            <!-- <div class="upi">
-                UPI ID: <strong>yourupi@upi</strong>
-            </div> -->
-
-           
-
-           
-
-        </div> 
-
-         <br>
+        <br>
 
         <div class="form-group">
-            <label for="transaction"> Transaction ID / UTR Number</label>
-            <input type="text" id="transaction" name="transaction" placeholder="Enter your payment transaction ID" required
-                <input type="text" name="utr" inputmode="numeric" pattern="[0-9]{12}" minlength="12" maxlength="12"
-                    required placeholder="Enter 12-digit UTR number" />
-            
-        </div> 
+            <label for="transaction">Transaction ID / UTR Number</label>
+            <input type="text" id="transaction" name="transaction"
+                   placeholder="Enter your payment transaction ID" required>
+        </div>
 
         <!-- Hidden fields -->
         <input type="hidden" name="amount" id="amountField" value="400">
         <input type="hidden" name="status" id="statusField" value="Pending">
 
-         <!-- Visible status badge -->
-         <!-- <div class="status-wrapper pending" id="statusBadge">
+        <!-- Visible status badge -->
+        <div class="status-wrapper pending" id="statusBadge">
             <div class="status-dot pending" id="statusDot"></div>
             <div>
                 <div class="status-text pending" id="statusLabel">PAYMENT STATUS: PENDING</div>
                 <div class="status-hint" id="statusHint">Enter your UPI Transaction ID to verify payment</div>
             </div>
-        </div> -->
-<!-- 
-        <div class="form-group">
-            <label for="transaction"> Transaction ID / UTR Number</label>
-            <input type="text" id="transaction" name="transaction" placeholder="Enter your payment transaction ID" required>
-        </div>  -->
-
+        </div>
 
         <!-- SUBMIT -->
-          <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TTvKDhDe8SodFM" > </script> 
         <button type="submit" class="submit-btn" id="submitBtn">
-             SUBMIT ZENITH REGISTRATION
-            
+            SUBMIT ZENITH REGISTRATION
         </button>
-
 
     </form>
 
-     
-        
-
-
     <div class="footer">
-        
         © 2026 <span>ZENITH Hackathon</span>
         · Sathaye College
-    </div>
-     <div class="footer">
-        
-        <h1><a href="index1.html"><i class="fa-solid fa-house"></i></a></h1>
-        <h2>GO BACK TO Home</h2>
     </div>
 
 </div>
@@ -1058,16 +1186,29 @@ textarea{
 
 <!-- IFRAME SUBMIT — no fetch, no CORS, works every time -->
 <script>
-var scriptURL = 'https://script.google.com/macros/s/AKfycbxZ47Nu8Kix1R9OrNEHRXqiz7tt3spEEvJXN0V4TFRyAnPl4yUlroDx3GTGkjxyzDDoCQ/exec'
-var form = document.forms['google-sheet']
-var submitBtn = document.getElementById('submitBtn')
-var hiddenFrame = document.getElementById('hiddenFrame')
+var scriptURL = 'https://script.google.com/macros/s/AKfycbxZ47Nu8Kix1R9OrNEHRXqiz7tt3spEEvJXN0V4TFRyAnPl4yUlroDx3GTGkjxyzDDoCQ/exec';
+var form = document.forms['google-sheet'];
+var submitBtn = document.getElementById('submitBtn');
+var hiddenFrame = document.getElementById('hiddenFrame');
 
 /* Set form action to the script URL */
-form.action = scriptURL
+form.action = scriptURL;
+
+/* Load the Razorpay payment button ONLY if registrations are open */
+if (window.REGISTRATIONS_OPEN) {
+    var rzp = document.createElement('script');
+    rzp.src = 'https://checkout.razorpay.com/v1/payment-button.js';
+    rzp.setAttribute('data-payment_button_id', 'pl_TTvKDhDe8SodFM');
+    rzp.async = true;
+    document.getElementById('razorpaySlot').appendChild(rzp);
+}
 
 /* When iframe finishes loading = form submission complete */
 hiddenFrame.onload = function() {
+
+    /* ignore the iframe's very first (blank) load */
+    if (!submitBtn.disabled) return;
+
     submitBtn.disabled = false;
     submitBtn.textContent = 'SUBMIT ZENITH REGISTRATION';
 
@@ -1076,20 +1217,25 @@ hiddenFrame.onload = function() {
 
     /* Reset form */
     form.reset();
-    document.getElementById('amountField').value = '200';
+    document.getElementById('amountField').value = '400';
     document.getElementById('statusField').value = 'Pending';
-    document.getElementById('statusBadge').className = 'status-wrapper pending';
-    document.getElementById('statusDot').className = 'status-dot pending';
-    document.getElementById('statusLabel').className = 'status-text pending';
-    document.getElementById('statusLabel').textContent = 'PAYMENT STATUS: PENDING';
-    document.getElementById('statusHint').textContent = 'Enter your UPI Transaction ID to verify payment';
-}
 
-/* Disable button while submitting */
-form.addEventListener('submit', function() {
+    if (typeof window.updateStatusUI === 'function') {
+        window.updateStatusUI(false);
+    }
+};
+
+/* Disable button while submitting + hard block when closed */
+form.addEventListener('submit', function(e) {
+
+    if (!window.REGISTRATIONS_OPEN) {
+        e.preventDefault();
+        return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'SUBMITTING...';
-})
+});
 
 function closeModal() {
     document.getElementById('successModal').classList.remove('show');
@@ -1111,35 +1257,47 @@ document.getElementById('errorModal').addEventListener('click', function(e) {
 <!-- Status auto-validator — only checks transaction ID -->
 <script>
 (function(){
-    var txInput      = document.getElementById('transaction');
-    var statusField  = document.getElementById('statusField');
-    var statusBadge  = document.getElementById('statusBadge');
-    var statusDot    = document.getElementById('statusDot');
-    var statusLabel  = document.getElementById('statusLabel');
-    var statusHint   = document.getElementById('statusHint');
 
-    function validatePayment(){
-        var hasTx = txInput.value.trim().length > 0;
+    var txInput     = document.getElementById('transaction');
+    var statusField = document.getElementById('statusField');
+    var statusBadge = document.getElementById('statusBadge');
+    var statusDot   = document.getElementById('statusDot');
+    var statusLabel = document.getElementById('statusLabel');
+    var statusHint  = document.getElementById('statusHint');
 
-        if(hasTx){
+    /* Safety: if any element is missing, don't crash the page */
+    if (!txInput || !statusField) return;
+
+    window.updateStatusUI = function(hasTx){
+
+        if (hasTx) {
             statusField.value = 'Valid';
-            statusBadge.className = 'status-wrapper valid';
-            statusDot.className   = 'status-dot valid';
-            statusLabel.className = 'status-text valid';
-            statusLabel.textContent = 'PAYMENT STATUS: VALID';
-            statusHint.textContent  = 'Transaction ID found — payment verified';
+            if (statusBadge) statusBadge.className = 'status-wrapper valid';
+            if (statusDot)   statusDot.className   = 'status-dot valid';
+            if (statusLabel) {
+                statusLabel.className = 'status-text valid';
+                statusLabel.textContent = 'PAYMENT STATUS: VALID';
+            }
+            if (statusHint) statusHint.textContent = 'Transaction ID found — payment verified';
         } else {
             statusField.value = 'Pending';
-            statusBadge.className = 'status-wrapper pending';
-            statusDot.className   = 'status-dot pending';
-            statusLabel.className = 'status-text pending';
-            statusLabel.textContent = 'PAYMENT STATUS: PENDING';
-            statusHint.textContent = 'Enter your UPI Transaction ID to verify payment';
+            if (statusBadge) statusBadge.className = 'status-wrapper pending';
+            if (statusDot)   statusDot.className   = 'status-dot pending';
+            if (statusLabel) {
+                statusLabel.className = 'status-text pending';
+                statusLabel.textContent = 'PAYMENT STATUS: PENDING';
+            }
+            if (statusHint) statusHint.textContent = 'Enter your UPI Transaction ID to verify payment';
         }
+    };
+
+    function validatePayment(){
+        window.updateStatusUI(txInput.value.trim().length > 0);
     }
 
     txInput.addEventListener('input', validatePayment);
     validatePayment();
+
 })();
 </script>
 
